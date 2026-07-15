@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alley Kyle Regala Portfolio</title>
+
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/style.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <!-- Your navbar goes here -->
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2026 Alley Kyle Regala. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

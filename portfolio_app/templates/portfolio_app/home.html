@@ -1,0 +1,357 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alley Kyle Regala</title>
+
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/style.css' %}">
+</head>
+
+<body>
+    <body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        AKR
+    </div>
+
+    <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+<section class="hero" id="home">
+
+    <div class="hero-left">
+
+        <p class="hello">
+            👋 Hello, I'm
+        </p>
+
+        <h1>
+            Alley Kyle Regala
+        </h1>
+
+        <h2>
+            GoHighLevel Specialist
+        </h2>
+
+        <p class="hero-description">
+
+            I help businesses automate CRM,
+            appointment booking,
+            lead management,
+            and customer follow-up using
+            GoHighLevel.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#projects" class="primary-btn">
+                View Projects
+            </a>
+
+            <a href="#contact" class="secondary-btn">
+                Contact Me
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <img src="{% static 'portfolio_app/images/profile.png' %}" alt="Profile">
+
+    </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+    <div class="section-title">
+        <h2>About Me</h2>
+        <p>My journey into CRM automation and web development.</p>
+    </div>
+
+    <div class="about-container">
+
+        <div class="about-card">
+
+            <h3>Who I Am</h3>
+
+            <p>
+                I'm <strong>Alley Kyle Regala</strong>, an aspiring
+                GoHighLevel Specialist and Django Web Developer.
+                I enjoy building CRM systems, automating business
+                workflows, and creating modern websites that improve
+                business operations.
+            </p>
+
+            <p>
+                My background includes administrative work,
+                data management, and web development. I'm currently
+                expanding my expertise in GoHighLevel to help businesses
+                automate lead generation, appointment scheduling, and
+                customer communication.
+            </p>
+
+        </div>
+
+        <div class="about-stats">
+
+            <div class="stat-card">
+                <h3>5+</h3>
+                <p>Portfolio Projects</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Committed to Learning</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Problem Solver</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Goal</h3>
+                <p>Remote GHL Specialist</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= SKILLS ================= -->
+
+<section class="skills" id="skills">
+
+    <div class="section-title">
+        <h2>My Skills</h2>
+        <p>Technologies and tools I'm learning and using.</p>
+    </div>
+
+    <div class="skills-grid">
+
+        <div class="skill-card">
+            <div class="skill-icon">⚙️</div>
+            <h3>GoHighLevel</h3>
+            <p>CRM, Workflows, Pipelines, Lead Management</p>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🐍</div>
+            <h3>Python & Django</h3>
+            <p>Backend Development & Web Applications</p>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🌐</div>
+            <h3>HTML • CSS • JavaScript</h3>
+            <p>Responsive & Modern Web Design</p>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🗄️</div>
+            <h3>Database</h3>
+            <p>SQLite, MySQL Basics</p>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">📊</div>
+            <h3>Microsoft Office</h3>
+            <p>Excel, Word, PowerPoint</p>
+        </div>
+
+        <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <h3>Canva</h3>
+            <p>Basic Graphic Design & Social Media Assets</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= PROJECTS ================= -->
+
+<section class="projects" id="projects">
+
+    <div class="section-title">
+        <h2>Featured Projects</h2>
+        <p>Practice projects demonstrating CRM automation and web development.</p>
+    </div>
+
+    <div class="projects-grid">
+
+        <a href="{% url 'dental_project' %}" class="project-card">
+
+            <div class="project-tag">Demo Project</div>
+
+            <h3>🦷 Bright Smile Dental Clinic</h3>
+
+            <p>
+                CRM workflow for appointment booking,
+                automated reminders,
+                and patient management.
+            </p>
+
+            <div class="project-tools">
+
+                <span>CRM</span>
+                <span>Automation</span>
+                <span>Workflow</span>
+
+            </div>
+
+        </a>
+
+        <div class="project-card">
+
+            <div class="project-tag">Coming Soon</div>
+
+            <h3>🏠 Real Estate CRM</h3>
+
+            <p>
+                Lead tracking system for property inquiries,
+                pipeline management, and automated follow-up.
+            </p>
+
+            <div class="project-tools">
+
+                <span>Pipeline</span>
+                <span>Lead Management</span>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-tag">Coming Soon</div>
+
+            <h3>💪 Gym Membership Funnel</h3>
+
+            <p>
+                Landing page, membership registration,
+                automated onboarding emails,
+                and appointment scheduling.
+            </p>
+
+            <div class="project-tools">
+
+                <span>Funnels</span>
+                <span>Email</span>
+
+            </div>
+
+        </div>
+
+        <div class="project-card">
+
+            <div class="project-tag">Coming Soon</div>
+
+            <h3>🍽 Restaurant Reservation</h3>
+
+            <p>
+                Reservation system with automated confirmation,
+                reminders, and customer follow-up.
+            </p>
+
+            <div class="project-tools">
+
+                <span>Calendar</span>
+                <span>SMS</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact" id="contact">
+
+    <div class="section-title">
+        <h2>Let's Work Together</h2>
+        <p>
+            I'm currently learning GoHighLevel and actively looking
+            for internship and remote opportunities.
+        </p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <div class="contact-item">
+                <span>📧</span>
+                <div>
+                    <h3>Email</h3>
+                    <p>alleykyle2@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span>💻</span>
+                <div>
+                    <h3>GitHub</h3>
+                    <p>github.com/Alleykyle</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span>💼</span>
+                <div>
+                    <h3>LinkedIn</h3>
+                    <p>https://www.linkedin.com/in/regala-alley-kyle-197822421/</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-buttons">
+
+            <a href="mailto:your.email@gmail.com" class="primary-btn">
+                Email Me
+            </a>
+
+            <a href="#" class="secondary-btn">
+                Download Resume
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</body>
+
+</html>
+
+{% endblock %}

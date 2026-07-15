@@ -1,0 +1,68 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 style="padding:40px;">👥 Patients</h1>
+
+<div class="table-container">
+
+    <table class="patient-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Service</th>
+
+                <th>Appointment</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>John Cruz</td>
+
+                <td>Cleaning</td>
+
+                <td>July 15</td>
+
+                <td>
+                    <span class="status confirmed">
+                        Confirmed
+                    </span>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>Maria Santos</td>
+
+                <td>Braces</td>
+
+                <td>July 18</td>
+
+                <td>
+                    <span class="status pending">
+                        Pending
+                    </span>
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
