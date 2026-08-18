@@ -1,0 +1,495 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>⚙ Settings</h1>
+
+        <p>Manage your gym system preferences.</p>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+GYM INFORMATION
+=========================== -->
+
+<div class="settings-card">
+
+    <div class="settings-header">
+
+        <div>
+
+            <h2>🏢 Gym Information</h2>
+
+            <p>Basic information about your gym.</p>
+
+        </div>
+
+    </div>
+
+    <div class="settings-grid">
+
+        <div class="form-group">
+
+            <label>Gym Name</label>
+
+            <input
+                type="text"
+                id="gymName"
+                value="PowerFit Gym">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                id="gymPhone"
+                value="+1 (555) 123-4567">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Email Address</label>
+
+            <input
+                type="email"
+                id="gymEmail"
+                value="info@powerfitgym.com">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Address</label>
+
+            <input
+                type="text"
+                id="gymAddress"
+                value="123 Fitness Street">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+ADMIN PROFILE
+=========================== -->
+
+<div class="settings-card">
+
+    <div class="settings-header">
+
+        <div>
+
+            <h2>👤 Admin Profile</h2>
+
+            <p>Manage the gym administrator information.</p>
+
+        </div>
+
+    </div>
+
+    <div class="settings-grid">
+
+        <div class="form-group">
+
+            <label>Admin Name</label>
+
+            <input
+                type="text"
+                value="Gym Administrator">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                value="admin@powerfitgym.com">
+
+        </div>
+
+    </div>
+
+    <button
+        class="action-btn"
+        id="changePasswordBtn">
+
+        Change Password
+
+    </button>
+
+</div>
+
+
+<!-- ===========================
+NOTIFICATIONS
+=========================== -->
+
+<div class="settings-card">
+
+    <div class="settings-header">
+
+        <div>
+
+            <h2>🔔 Notifications</h2>
+
+            <p>Choose which notifications you want to receive.</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="setting-option">
+
+        <div>
+
+            <strong>Payment Reminders</strong>
+
+            <p>
+                Receive reminders for pending member payments.
+            </p>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                checked>
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-option">
+
+        <div>
+
+            <strong>Membership Expiration</strong>
+
+            <p>
+                Get notified when memberships are about to expire.
+            </p>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                checked>
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting-option">
+
+        <div>
+
+            <strong>Class Reminders</strong>
+
+            <p>
+                Receive reminders about upcoming gym classes.
+            </p>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                checked>
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+SYSTEM PREFERENCES
+=========================== -->
+
+<div class="settings-card">
+
+    <div class="settings-header">
+
+        <div>
+
+            <h2>⚙ System Preferences</h2>
+
+            <p>Customize how information is displayed.</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="settings-grid">
+
+        <div class="form-group">
+
+            <label>Currency</label>
+
+            <select>
+
+                <option>USD ($)</option>
+                <option>PHP (₱)</option>
+                <option>EUR (€)</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Date Format</label>
+
+            <select>
+
+                <option>MM/DD/YYYY</option>
+                <option>DD/MM/YYYY</option>
+                <option>YYYY-MM-DD</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+SAVE BUTTON
+=========================== -->
+
+<div class="settings-actions">
+
+    <button
+        class="new-btn"
+        id="saveSettings">
+
+        Save Changes
+
+    </button>
+
+</div>
+
+
+<!-- ===========================
+PASSWORD MODAL
+=========================== -->
+
+<div
+    id="passwordModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closePasswordModal">
+
+            &times;
+
+        </span>
+
+        <h2>Change Password</h2>
+
+        <div class="form-group">
+
+            <label>Current Password</label>
+
+            <input
+                type="password"
+                id="currentPassword">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>New Password</label>
+
+            <input
+                type="password"
+                id="newPassword">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Confirm New Password</label>
+
+            <input
+                type="password"
+                id="confirmPassword">
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="savePassword">
+
+            Update Password
+
+        </button>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// PASSWORD MODAL
+// ===========================
+
+const changePasswordBtn =
+document.getElementById("changePasswordBtn");
+
+const passwordModal =
+document.getElementById("passwordModal");
+
+const closePasswordModal =
+document.getElementById("closePasswordModal");
+
+
+if(changePasswordBtn){
+
+    changePasswordBtn.onclick = function(){
+
+        passwordModal.style.display = "flex";
+
+    };
+
+}
+
+
+if(closePasswordModal){
+
+    closePasswordModal.onclick = function(){
+
+        passwordModal.style.display = "none";
+
+    };
+
+}
+
+
+window.addEventListener("click", function(e){
+
+    if(e.target === passwordModal){
+
+        passwordModal.style.display = "none";
+
+    }
+
+});
+
+
+// ===========================
+// SAVE PASSWORD
+// ===========================
+
+const savePassword =
+document.getElementById("savePassword");
+
+
+if(savePassword){
+
+    savePassword.onclick = function(){
+
+        const current =
+            document.getElementById("currentPassword").value;
+
+        const newPassword =
+            document.getElementById("newPassword").value;
+
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+
+        if(!current || !newPassword || !confirmPassword){
+
+            alert("Please complete all password fields.");
+
+            return;
+
+        }
+
+
+        if(newPassword !== confirmPassword){
+
+            alert("New passwords do not match.");
+
+            return;
+
+        }
+
+
+        alert("Password updated successfully.");
+
+        passwordModal.style.display = "none";
+
+    };
+
+}
+
+
+// ===========================
+// SAVE SETTINGS
+// ===========================
+
+const saveSettings =
+document.getElementById("saveSettings");
+
+
+if(saveSettings){
+
+    saveSettings.onclick = function(){
+
+        alert("Settings saved successfully.");
+
+    };
+
+}
+
+</script>
+
+{% endblock %}

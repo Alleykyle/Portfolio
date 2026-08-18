@@ -1,0 +1,852 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ===========================
+DASHBOARD HEADER
+=========================== -->
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>🏋 Dashboard</h1>
+
+        <p>
+            Welcome back! Here's today's gym overview.
+        </p>
+
+    </div>
+
+    <a
+        href="{% url 'gym_members' %}"
+        class="new-btn">
+
+        + Add Member
+
+    </a>
+
+</div>
+
+
+<!-- ===========================
+STATISTICS
+=========================== -->
+
+<div class="stats-grid">
+
+    <!-- Total Members -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+        <div>
+
+            <h2>1,284</h2>
+
+            <p>Total Members</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Active Memberships -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            💳
+        </div>
+
+        <div>
+
+            <h2>1,042</h2>
+
+            <p>Active Memberships</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Trainers -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🏋
+        </div>
+
+        <div>
+
+            <h2>28</h2>
+
+            <p>Trainers</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Revenue -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h2>$24,300</h2>
+
+            <p>Monthly Revenue</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+TODAY OVERVIEW
+=========================== -->
+
+<div class="stats-grid">
+
+    <!-- Check-ins -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📋
+        </div>
+
+        <div>
+
+            <h2>24</h2>
+
+            <p>Today's Check-ins</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Classes -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📅
+        </div>
+
+        <div>
+
+            <h2>8</h2>
+
+            <p>Today's Classes</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Pending Payments -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            ⏳
+        </div>
+
+        <div>
+
+            <h2>12</h2>
+
+            <p>Pending Payments</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- New Members -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🆕
+        </div>
+
+        <div>
+
+            <h2>7</h2>
+
+            <p>New This Week</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+MAIN DASHBOARD
+=========================== -->
+
+<div class="dashboard-grid">
+
+
+    <!-- ===========================
+    ATTENDANCE CHART
+    =========================== -->
+
+    <div class="dashboard-card chart-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>📈 Weekly Attendance</h2>
+
+                <p>
+                    Member check-ins this week
+                </p>
+
+            </div>
+
+        </div>
+
+        <canvas
+            id="attendanceChart">
+        </canvas>
+
+    </div>
+
+
+    <!-- ===========================
+    TODAY'S CLASSES
+    =========================== -->
+
+    <div class="dashboard-card">
+
+        <div class="section-header">
+
+            <h2>📅 Today's Classes</h2>
+
+            <a
+                href="{% url 'gym_schedule' %}"
+                class="view-link">
+
+                View All
+
+            </a>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>Yoga</strong>
+
+                <p>Sarah Lee</p>
+
+            </div>
+
+            <span>
+                8:00 AM
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>HIIT</strong>
+
+                <p>Mike Johnson</p>
+
+            </div>
+
+            <span>
+                10:00 AM
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>Strength Training</strong>
+
+                <p>David Clark</p>
+
+            </div>
+
+            <span>
+                2:00 PM
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>Zumba</strong>
+
+                <p>Sarah Lee</p>
+
+            </div>
+
+            <span>
+                6:00 PM
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+RECENT MEMBERS
+=========================== -->
+
+<div class="dashboard-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>🆕 Recent Members</h2>
+
+            <p>
+                Recently registered gym members
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'gym_members' %}"
+            class="view-link">
+
+            View All
+
+        </a>
+
+    </div>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Member</th>
+
+                <th>Membership</th>
+
+                <th>Trainer</th>
+
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+
+            <tr>
+
+                <td>
+
+                    <div class="member-info">
+
+                        <div class="member-avatar">
+                            JS
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                John Smith
+                            </strong>
+
+                            <small>
+                                #1001
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    Premium
+                </td>
+
+                <td>
+                    Mike Johnson
+                </td>
+
+                <td>
+
+                    <span class="status active">
+                        Active
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+
+                    <div class="member-info">
+
+                        <div class="member-avatar">
+                            AC
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Anna Cruz
+                            </strong>
+
+                            <small>
+                                #1002
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    Standard
+                </td>
+
+                <td>
+                    Sarah Lee
+                </td>
+
+                <td>
+
+                    <span class="status active">
+                        Active
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+
+                    <div class="member-info">
+
+                        <div class="member-avatar">
+                            ML
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Michael Lee
+                            </strong>
+
+                            <small>
+                                #1003
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    Basic
+                </td>
+
+                <td>
+                    Mike Johnson
+                </td>
+
+                <td>
+
+                    <span class="status expired">
+                        Expired
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ===========================
+BOTTOM DASHBOARD
+=========================== -->
+
+<div class="dashboard-grid">
+
+
+    <!-- ===========================
+    RECENT PAYMENTS
+    =========================== -->
+
+    <div class="dashboard-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>💰 Recent Payments</h2>
+
+                <p>
+                    Latest membership payments
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'gym_payments' %}"
+                class="view-link">
+
+                View All
+
+            </a>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    John Smith
+                </strong>
+
+                <p>
+                    Premium Membership
+                </p>
+
+            </div>
+
+            <strong>
+                $70
+            </strong>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    Anna Cruz
+                </strong>
+
+                <p>
+                    Standard Membership
+                </p>
+
+            </div>
+
+            <strong>
+                $45
+            </strong>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    Michael Lee
+                </strong>
+
+                <p>
+                    Basic Membership
+                </p>
+
+            </div>
+
+            <strong>
+                $25
+            </strong>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    James Wilson
+                </strong>
+
+                <p>
+                    Premium Membership
+                </p>
+
+            </div>
+
+            <strong>
+                $70
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===========================
+    RECENT ATTENDANCE
+    =========================== -->
+
+    <div class="dashboard-card">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>📋 Recent Attendance</h2>
+
+                <p>
+                    Latest member check-ins
+                </p>
+
+            </div>
+
+            <a
+                href="{% url 'gym_attendance' %}"
+                class="view-link">
+
+                View All
+
+            </a>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    John Smith
+                </strong>
+
+                <p>
+                    8:02 AM
+                </p>
+
+            </div>
+
+            <span class="status active">
+                Checked Out
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    Anna Cruz
+                </strong>
+
+                <p>
+                    9:15 AM
+                </p>
+
+            </div>
+
+            <span class="status pending">
+                Inside
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    James Wilson
+                </strong>
+
+                <p>
+                    9:40 AM
+                </p>
+
+            </div>
+
+            <span class="status pending">
+                Inside
+            </span>
+
+        </div>
+
+
+        <div class="class-item">
+
+            <div>
+
+                <strong>
+                    Maria Santos
+                </strong>
+
+                <p>
+                    10:05 AM
+                </p>
+
+            </div>
+
+            <span class="status active">
+                Checked Out
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// WEEKLY ATTENDANCE CHART
+// ===========================
+
+const ctx =
+    document.getElementById("attendanceChart");
+
+
+if (ctx) {
+
+    new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+
+            labels: [
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+            ],
+
+            datasets: [{
+
+                label: "Attendance",
+
+                data: [
+                    85,
+                    96,
+                    102,
+                    110,
+                    125,
+                    140,
+                    98
+                ],
+
+                borderWidth: 3,
+
+                tension: .4,
+
+                fill: true
+
+            }]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+
+                }
+
+            },
+
+            scales: {
+
+                y: {
+
+                    beginAtZero: true
+
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+</script>
+
+{% endblock %}

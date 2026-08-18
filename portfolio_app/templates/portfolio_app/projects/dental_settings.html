@@ -1,0 +1,364 @@
+{% extends 'portfolio_app/crm_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="settings-container">
+
+    <!-- Clinic Information -->
+
+    <div class="settings-card">
+
+        <h2>🏥 Clinic Information</h2>
+
+        <div class="settings-group">
+            <label>Clinic Name</label>
+            <input type="text" value="Bright Smile Dental Clinic">
+        </div>
+
+        <div class="settings-group">
+            <label>Email Address</label>
+            <input type="email" value="info@brightsmile.com">
+        </div>
+
+        <div class="settings-group">
+            <label>Phone Number</label>
+            <input type="text" value="+63 912 345 6789">
+        </div>
+
+        <div class="settings-group">
+            <label>Business Hours</label>
+            <input type="text" value="Monday - Saturday | 8:00 AM - 5:00 PM">
+        </div>
+
+    </div>
+
+    <!-- Notifications -->
+
+    <div class="settings-card">
+
+        <h2>🔔 Notifications</h2>
+
+        <div class="settings-check">
+
+            <label>
+                <input type="checkbox" checked>
+                Email Notifications
+            </label>
+
+            <label>
+                <input type="checkbox" checked>
+                SMS Appointment Reminders
+            </label>
+
+            <label>
+                <input type="checkbox" checked>
+                Workflow Alerts
+            </label>
+
+            <label>
+                <input type="checkbox">
+                Marketing Campaign Alerts
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Appearance -->
+
+    <div class="settings-card">
+
+        <h2>🎨 Appearance</h2>
+
+        <div class="settings-check">
+
+            <label>
+                <input type="radio" name="theme" checked>
+                Light Mode
+            </label>
+
+            <label>
+                <input type="radio" name="theme">
+                Dark Mode
+            </label>
+
+        </div>
+
+    </div>
+
+    <!-- Security -->
+
+    <div class="settings-card">
+
+        <h2>🔒 Security</h2>
+
+        <div class="security-actions">
+
+            <button
+                type="button"
+                class="action-btn">
+
+                Change Password
+
+            </button>
+
+            <button
+                type="button"
+                class="action-btn">
+
+                Backup Database
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Staff Management -->
+
+    <div class="settings-card">
+
+        <div class="section-header">
+
+            <h2>👨‍⚕️ Staff Accounts</h2>
+
+            <button
+                type="button"
+                class="new-btn"
+                id="addStaffBtn">
+
+                + Add Staff
+
+            </button>
+
+        </div>
+
+        <div
+            class="staff-list"
+            id="staffList">
+
+            <div class="staff-item">
+
+                <div>
+
+                    <strong>Dr. Maria Santos</strong>
+
+                    <p>Dentist</p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="action-btn">
+
+                    Edit
+
+                </button>
+
+            </div>
+
+            <div class="staff-item">
+
+                <div>
+
+                    <strong>John Cruz</strong>
+
+                    <p>Receptionist</p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="action-btn">
+
+                    Edit
+
+                </button>
+
+            </div>
+
+            <div class="staff-item">
+
+                <div>
+
+                    <strong>Admin User</strong>
+
+                    <p>Administrator</p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="action-btn">
+
+                    Edit
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Save Settings -->
+
+    <button
+        type="button"
+        class="save-btn"
+        id="saveSettings">
+
+        Save Changes
+
+    </button>
+
+</div>
+<!-- ==========================
+Add Staff Modal
+========================== -->
+
+<div
+    class="modal-overlay"
+    id="staffModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2>Add Staff Member</h2>
+
+            <button
+                class="close-modal"
+                id="closeStaffModal">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="staffName">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Role</label>
+
+                <select id="staffRole">
+
+                    <option>Dentist</option>
+
+                    <option>Receptionist</option>
+
+                    <option>Administrator</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="action-btn"
+                id="saveStaff">
+
+                Save
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Save Settings
+    const saveSettings = document.getElementById("saveSettings");
+
+    if (saveSettings) {
+        saveSettings.addEventListener("click", function () {
+            alert("✅ Settings saved successfully!");
+        });
+    }
+
+    // Staff Elements
+    const addStaffBtn = document.getElementById("addStaffBtn");
+    const staffModal = document.getElementById("staffModal");
+    const closeStaffModal = document.getElementById("closeStaffModal");
+    const saveStaff = document.getElementById("saveStaff");
+    const staffList = document.getElementById("staffList");
+
+    // Open Modal
+    addStaffBtn.addEventListener("click", function () {
+
+        console.log("Button clicked!");
+        console.log(staffModal);
+
+        if (staffModal) {
+            staffModal.style.display = "flex";
+        } else {
+            console.error("staffModal not found!");
+        }
+
+    });
+
+    // Close Modal
+    closeStaffModal.addEventListener("click", function () {
+        staffModal.style.display = "none";
+    });
+
+    // Save Staff
+    saveStaff.addEventListener("click", function () {
+
+        const name = document.getElementById("staffName").value.trim();
+        const role = document.getElementById("staffRole").value;
+
+        if (name === "") {
+            alert("Please enter a name.");
+            return;
+        }
+
+        staffList.insertAdjacentHTML("beforeend", `
+            <div class="staff-item">
+
+                <div>
+                    <strong>${name}</strong>
+                    <p>${role}</p>
+                </div>
+
+                <button class="action-btn">
+                    Edit
+                </button>
+
+            </div>
+        `);
+
+        document.getElementById("staffName").value = "";
+        document.getElementById("staffRole").selectedIndex = 0;
+
+        staffModal.style.display = "none";
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

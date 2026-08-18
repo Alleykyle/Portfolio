@@ -1,0 +1,104 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="project-overview">
+
+    <div class="dashboard-header">
+
+        <div>
+            <span class="project-label">PORTFOLIO PROJECT</span>
+
+            <h1>🏋 FitCore Gym CRM</h1>
+
+            <p>
+                A modern gym management dashboard designed to
+                manage members, trainers, memberships, payments,
+                attendance, schedules, and reports.
+            </p>
+        </div>
+
+        <a href="{% url 'gym_dashboard' %}" class="new-btn">
+            View Live Demo →
+        </a>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>About the Project</h2>
+
+        <p>
+            FitCore Gym CRM is a management interface designed
+            to provide gym staff with a centralized system for
+            monitoring and managing daily gym operations.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>Key Features</h2>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div>
+                    <h3>Members</h3>
+                    <p>Member management</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">💳</div>
+                <div>
+                    <h3>Memberships</h3>
+                    <p>Membership plans</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏋</div>
+                <div>
+                    <h3>Trainers</h3>
+                    <p>Trainer management</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div>
+                    <h3>Analytics</h3>
+                    <p>Reports and insights</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>Technology Stack</h2>
+
+        <div class="project-tools">
+
+            <span>Django</span>
+            <span>Python</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Chart.js</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

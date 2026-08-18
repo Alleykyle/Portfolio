@@ -1,0 +1,651 @@
+{% extends 'portfolio_app/crm_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+        <h1>🤖 Workflow Automation</h1>
+        <p>Automate repetitive clinic tasks and improve patient engagement.</p>
+    </div>
+
+    <button
+        class="new-btn"
+        id="openWorkflowModal">
+
+        + New Workflow
+
+    </button>
+
+</div>
+
+<div class="workflow-grid" id="workflowGrid">
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">📅</div>
+
+        <h3>Appointment Reminder</h3>
+
+        <p>
+            Automatically send an SMS and email reminder
+            24 hours before every appointment.
+        </p>
+
+        <span class="workflow-status active">Active</span>
+
+        <div class="workflow-actions">
+
+            <button
+                class="action-btn view-workflow"
+                data-title="Appointment Reminder"
+                data-description="Automatically send an SMS and email reminder 24 hours before every appointment."
+                data-status="Active">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">😊</div>
+
+        <h3>Post-Treatment Follow-up</h3>
+
+        <p>
+            Send a thank-you message and request feedback
+            after treatment.
+        </p>
+
+        <span class="workflow-status active">Active</span>
+
+        <div class="workflow-actions">
+
+            <button
+                class="action-btn view-workflow"
+                data-title="Post-Treatment Follow-up"
+                data-description="Send a thank-you message and request feedback after treatment."
+                data-status="Active">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">🎂</div>
+
+        <h3>Birthday Greetings</h3>
+
+        <p>
+            Automatically send birthday wishes with a
+            promotional discount.
+        </p>
+
+        <span class="workflow-status inactive">Inactive</span>
+
+        <div class="workflow-actions">
+
+           <button
+                class="action-btn view-workflow"
+                data-title="Birthday Greetings"
+                data-description="Automatically send birthday wishes with a promotional discount."
+                data-status="Inactive">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">⚠️</div>
+
+        <h3>Missed Appointment</h3>
+
+        <p>
+            Contact patients who missed appointments and
+            offer a reschedule link.
+        </p>
+
+        <span class="workflow-status active">Active</span>
+
+        <div class="workflow-actions">
+
+            <button
+                class="action-btn view-workflow"
+                data-title="Birthday Greetings"
+                data-description="Automatically send birthday wishes with a promotional discount."
+                data-status="Inactive">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">⭐</div>
+
+        <h3>Google Review Request</h3>
+
+        <p>
+            Ask satisfied patients to leave an online review
+            after their visit.
+        </p>
+
+        <span class="workflow-status active">Active</span>
+
+        <div class="workflow-actions">
+
+            <button
+                class="action-btn view-workflow"
+                data-title="Birthday Greetings"
+                data-description="Automatically send birthday wishes with a promotional discount."
+                data-status="Inactive">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <div class="workflow-icon">🦷</div>
+
+        <h3>Recall Reminder</h3>
+
+        <p>
+            Remind patients every six months for their
+            routine dental cleaning.
+        </p>
+
+        <span class="workflow-status active">Active</span>
+
+        <div class="workflow-actions">
+
+           <button
+                class="action-btn view-workflow"
+                data-title="Birthday Greetings"
+                data-description="Automatically send birthday wishes with a promotional discount."
+                data-status="Inactive">
+
+                View
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+     New Workflow Modal
+====================================== -->
+
+<div id="workflowModal" class="modal">
+
+    <div class="modal-content appointment-modal">
+
+        <span class="close-modal" id="closeWorkflowModal">
+            &times;
+        </span>
+
+        <h2>🤖 New Workflow</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>Workflow Name</label>
+
+                <input
+                    type="text"
+                    id="workflowName"
+                    placeholder="Appointment Reminder">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Trigger</label>
+
+                <select id="workflowTrigger">
+
+                    <option>24 Hours Before Appointment</option>
+                    <option>After Treatment</option>
+                    <option>Birthday</option>
+                    <option>Missed Appointment</option>
+                    <option>6 Month Recall</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Action</label>
+
+                <select id="workflowAction">
+
+                    <option>Send SMS</option>
+                    <option>Send Email</option>
+                    <option>SMS + Email</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="workflowStatus">
+
+                    <option>Active</option>
+                    <option>Inactive</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="secondary-btn"
+                id="cancelWorkflow">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="new-btn"
+                id="saveWorkflow">
+
+                Save Workflow
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =============================
+     Workflow Details Modal
+============================= -->
+
+<div id="viewWorkflowModal" class="modal">
+
+    <div class="modal-content appointment-modal">
+
+        <span
+            class="close-modal"
+            id="closeViewWorkflow">
+
+            &times;
+
+        </span>
+
+        <h2 id="workflowTitle">
+
+            Appointment Reminder
+
+        </h2>
+
+        <hr>
+
+        <p>
+
+            <strong>Description</strong>
+
+        </p>
+
+        <p id="workflowDescription">
+
+        </p>
+
+        <p>
+
+            <strong>Status</strong>
+
+        </p>
+
+        <span
+            class="workflow-status"
+            id="workflowStatusText">
+
+        </span>
+
+        <div class="modal-footer">
+
+            <button
+                class="action-btn"
+                id="editWorkflow">
+
+                ✏ Edit
+
+            </button>
+
+            <button
+                class="secondary-btn"
+                id="deleteWorkflow">
+
+                🗑 Delete
+
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// =============================
+// Workflow Modal
+// =============================
+
+let editingWorkflow = null;
+
+const workflowModal =
+document.getElementById("workflowModal");
+
+const openWorkflow =
+document.getElementById("openWorkflowModal");
+
+const closeWorkflow =
+document.getElementById("closeWorkflowModal");
+
+const cancelWorkflow =
+document.getElementById("cancelWorkflow");
+
+if (openWorkflow) {
+
+    openWorkflow.addEventListener("click", function(){
+
+        workflowModal.style.display = "flex";
+
+    });
+
+}
+
+if (closeWorkflow) {
+
+    closeWorkflow.addEventListener("click", function(){
+
+        workflowModal.style.display = "none";
+
+    });
+
+}
+
+if (cancelWorkflow) {
+
+    cancelWorkflow.addEventListener("click", function(){
+
+        workflowModal.style.display = "none";
+
+    });
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === workflowModal){
+
+        workflowModal.style.display = "none";
+
+    }
+
+});
+
+// =============================
+// Save Workflow
+// =============================
+
+const saveWorkflow =
+document.getElementById("saveWorkflow");
+
+if(saveWorkflow){
+
+    saveWorkflow.addEventListener("click", function(){
+
+        const name =
+        document.getElementById("workflowName").value.trim();
+
+        const trigger =
+        document.getElementById("workflowTrigger").value;
+
+        const action =
+        document.getElementById("workflowAction").value;
+
+        const status =
+        document.getElementById("workflowStatus").value;
+
+        if(name === ""){
+
+            alert("Please enter a workflow name.");
+
+            return;
+
+        }
+
+        const grid =
+        document.getElementById("workflowGrid");
+
+        const card =
+        document.createElement("div");
+
+        card.className = "workflow-card";
+
+        card.innerHTML = `
+            <div class="workflow-icon">🤖</div>
+
+            <h3>${name}</h3>
+
+            <p>
+
+                Trigger:
+                <strong>${trigger}</strong>
+
+                <br><br>
+
+                Action:
+                <strong>${action}</strong>
+
+            </p>
+
+            <span class="workflow-status ${status.toLowerCase()}">
+
+                ${status}
+
+            </span>
+
+            <div class="workflow-actions">
+
+                <button
+                    class="action-btn view-workflow"
+                    data-title="${name}"
+                    data-description="Trigger: ${trigger} | Action: ${action}"
+                    data-status="${status}">
+
+                    View
+
+                </button>
+
+            </div>
+        `;
+
+        grid.appendChild(card);
+
+        attachWorkflowEvents();
+
+        workflowModal.style.display = "none";
+
+        document.getElementById("workflowName").value = "";
+
+        document.getElementById("workflowTrigger").selectedIndex = 0;
+
+        document.getElementById("workflowAction").selectedIndex = 0;
+
+        document.getElementById("workflowStatus").selectedIndex = 0;
+
+    });
+
+}
+
+// =============================
+// View Workflow
+// =============================
+
+const workflowViewModal =
+document.getElementById("viewWorkflowModal");
+
+const workflowButtons =
+document.querySelectorAll(".view-workflow");
+
+const closeViewWorkflow =
+document.getElementById("closeViewWorkflow");
+
+workflowButtons.forEach(button => {
+
+    button.addEventListener("click", function(){
+
+        document.getElementById("workflowTitle").textContent =
+            this.dataset.title;
+
+        document.getElementById("workflowDescription").textContent =
+            this.dataset.description;
+
+        document.getElementById("workflowStatusText").textContent =
+            this.dataset.status;
+
+        document.getElementById("workflowStatusText").className =
+            "workflow-status " +
+            this.dataset.status.toLowerCase();
+
+        workflowViewModal.style.display = "flex";
+
+    });
+
+});
+
+closeViewWorkflow.addEventListener("click", function(){
+
+    workflowViewModal.style.display = "none";
+
+});
+
+window.addEventListener("click", function(e){
+
+    if(e.target === workflowViewModal){
+
+        workflowViewModal.style.display = "none";
+
+    }
+
+});
+
+function attachWorkflowEvents(){
+
+    document.querySelectorAll(".view-workflow").forEach(button => {
+
+        button.onclick = function(){
+
+            editingWorkflow =
+            this.closest(".workflow-card");
+
+            document.getElementById("workflowTitle").textContent =
+                this.dataset.title;
+
+            document.getElementById("workflowDescription").textContent =
+                this.dataset.description;
+
+            document.getElementById("workflowStatusText").textContent =
+                this.dataset.status;
+
+            document.getElementById("workflowStatusText").className =
+                "workflow-status " +
+                this.dataset.status.toLowerCase();
+
+            workflowViewModal.style.display = "flex";
+
+        };
+
+    });
+
+}
+
+const editWorkflow =
+document.getElementById("editWorkflow");
+
+editWorkflow.onclick = function(){
+
+    document.getElementById("workflowName").value =
+        document.getElementById("workflowTitle").textContent;
+
+    workflowViewModal.style.display = "none";
+
+    workflowModal.style.display = "flex";
+
+};
+
+// Initialize existing cards
+attachWorkflowEvents();
+
+// =============================
+// Delete Workflow
+// =============================
+
+const deleteWorkflow =
+document.getElementById("deleteWorkflow");
+
+deleteWorkflow.onclick = function(){
+
+    if(editingWorkflow){
+
+        const confirmDelete = confirm(
+            "Are you sure you want to delete this workflow?"
+        );
+
+        if(confirmDelete){
+
+            editingWorkflow.remove();
+
+            editingWorkflow = null;
+
+            workflowViewModal.style.display = "none";
+
+        }
+
+    }
+
+};
+
+</script>
+
+{% endblock %}

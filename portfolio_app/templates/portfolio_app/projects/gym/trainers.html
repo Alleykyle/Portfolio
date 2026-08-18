@@ -1,0 +1,575 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>🏋 Trainers</h1>
+
+        <p>Manage all gym trainers.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addTrainerBtn">
+
+        + Add Trainer
+
+    </button>
+
+</div>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="trainerSearch"
+        placeholder="Search trainer...">
+
+</div>
+
+<div class="trainer-grid">
+
+    <div class="trainer-card">
+
+        <div class="trainer-avatar">
+
+            MJ
+
+        </div>
+
+        <h2>Mike Johnson</h2>
+
+        <p class="specialty">
+
+            Strength Coach
+
+        </p>
+
+        <p>📞 0917-111-2222</p>
+
+        <p>👥 18 Members</p>
+
+        <div class="card-actions">
+
+            <button
+                class="action-btn view-btn"
+
+                data-avatar="MJ"
+
+                data-name="Mike Johnson"
+
+                data-specialty="Strength Coach"
+
+                data-phone="0917-111-2222"
+
+                data-email="mike@email.com"
+
+                data-members="18">
+
+                View
+
+            </button>
+
+            <button class="action-btn edit-btn">
+
+                Edit
+
+            </button>
+
+            <button class="action-btn delete-btn">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="trainer-card">
+
+        <div class="trainer-avatar">
+
+            SL
+
+        </div>
+
+        <h2>Sarah Lee</h2>
+
+        <p class="specialty">
+
+            Yoga Instructor
+
+        </p>
+
+        <p>📞 0918-222-3333</p>
+
+        <p>👥 12 Members</p>
+
+        <div class="card-actions">
+
+            <button
+                class="action-btn view-btn"
+
+                data-avatar="SL"
+
+                data-name="Sarah Lee"
+
+                data-specialty="Yoga Instructor"
+
+                data-phone="0918-222-3333"
+
+                data-email="Sarah@email.com"
+
+                data-members="12">
+
+                View
+
+            </button>
+
+            <button class="action-btn edit-btn">
+
+                Edit
+
+            </button>
+
+            <button class="action-btn delete-btn">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+ADD TRAINER MODAL
+=========================== -->
+
+<div id="addTrainerModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeAddTrainer">
+
+            &times;
+
+        </span>
+
+        <h2>Add Trainer</h2>
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="trainerName">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Specialization</label>
+
+            <input
+                type="text"
+                id="trainerSpecialty">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Phone Number</label>
+
+            <input
+                type="text"
+                id="trainerPhone">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="trainerEmail">
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="saveTrainer">
+
+            Save Trainer
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+VIEW TRAINER MODAL
+=========================== -->
+
+<div id="trainerModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeTrainerModal">
+
+            &times;
+
+        </span>
+
+        <div class="modal-header">
+
+            <div
+                class="trainer-avatar"
+                id="modalAvatar">
+
+                MJ
+
+            </div>
+
+            <div>
+
+                <h2 id="modalTrainerName">
+
+                    Mike Johnson
+
+                </h2>
+
+                <p id="modalSpecialty">
+
+                    Strength Coach
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Phone</strong>
+
+            <span id="modalPhone">
+
+                0917-111-2222
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Email</strong>
+
+            <span id="modalEmail">
+
+                mike@email.com
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Assigned Members</strong>
+
+            <span id="modalMembers">
+
+                18
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// SEARCH TRAINER
+// ===========================
+
+const trainerSearch = document.getElementById("trainerSearch");
+
+if(trainerSearch){
+
+    trainerSearch.addEventListener("keyup", function(){
+
+        const filter = this.value.toLowerCase();
+
+        document.querySelectorAll(".trainer-card").forEach(function(card){
+
+            card.style.display =
+                card.innerText.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ===========================
+// ADD TRAINER MODAL
+// ===========================
+
+const addTrainerBtn = document.getElementById("addTrainerBtn");
+const addTrainerModal = document.getElementById("addTrainerModal");
+const closeAddTrainer = document.getElementById("closeAddTrainer");
+
+let editingTrainer = null;
+
+addTrainerBtn.onclick = function(){
+
+    addTrainerModal.style.display = "flex";
+
+}
+
+closeAddTrainer.onclick = function(){
+
+    addTrainerModal.style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === addTrainerModal){
+
+        addTrainerModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// SAVE TRAINER
+// ===========================
+
+const saveTrainer = document.getElementById("saveTrainer");
+
+saveTrainer.onclick = function(){
+
+    const name = document.getElementById("trainerName").value.trim();
+    const specialty = document.getElementById("trainerSpecialty").value.trim();
+    const phone = document.getElementById("trainerPhone").value.trim();
+    const email = document.getElementById("trainerEmail").value.trim();
+
+    if(name === ""){
+
+        alert("Please enter trainer name.");
+
+        return;
+
+    }
+
+    const avatar = name.split(" ")
+        .map(word => word[0])
+        .join("")
+        .substring(0,2)
+        .toUpperCase();
+
+    const card = document.createElement("div");
+
+    card.className = "trainer-card";
+
+    card.innerHTML = `
+        <div class="trainer-avatar">
+            ${avatar}
+        </div>
+
+        <h2>${name}</h2>
+
+        <p class="specialty">
+            ${specialty}
+        </p>
+
+        <p>📞 ${phone}</p>
+
+        <p>👥 0 Members</p>
+
+        <div class="card-actions">
+
+            <button
+                class="action-btn view-btn"
+
+                data-avatar="${avatar}"
+                data-name="${name}"
+                data-specialty="${specialty}"
+                data-phone="${phone}"
+                data-email="${email}"
+                data-members="0">
+
+                View
+
+            </button>
+
+            <button class="action-btn edit-btn">
+
+                Edit
+
+            </button>
+
+            <button class="action-btn delete-btn">
+
+                Delete
+
+            </button>
+
+        </div>
+    `;
+
+    if(editingTrainer){
+
+        editingTrainer.replaceWith(card);
+
+        editingTrainer = null;
+
+    }else{
+
+        document.querySelector(".trainer-grid")
+            .appendChild(card);
+
+    }
+
+    document.getElementById("trainerName").value = "";
+    document.getElementById("trainerSpecialty").value = "";
+    document.getElementById("trainerPhone").value = "";
+    document.getElementById("trainerEmail").value = "";
+
+    addTrainerModal.style.display = "none";
+
+}
+
+// ===========================
+// VIEW TRAINER
+// ===========================
+
+const trainerModal = document.getElementById("trainerModal");
+
+const closeTrainerModal =
+document.getElementById("closeTrainerModal");
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".view-btn");
+
+    if(!btn) return;
+
+    document.getElementById("modalAvatar").textContent =
+    btn.dataset.avatar;
+
+    document.getElementById("modalTrainerName").textContent =
+    btn.dataset.name;
+
+    document.getElementById("modalSpecialty").textContent =
+    btn.dataset.specialty;
+
+    document.getElementById("modalPhone").textContent =
+    btn.dataset.phone;
+
+    document.getElementById("modalEmail").textContent =
+    btn.dataset.email;
+
+    document.getElementById("modalMembers").textContent =
+    btn.dataset.members;
+
+    trainerModal.style.display = "flex";
+
+});
+
+closeTrainerModal.onclick = function(){
+
+    trainerModal.style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === trainerModal){
+
+        trainerModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// DELETE TRAINER
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".delete-btn");
+
+    if(!btn) return;
+
+    if(confirm("Delete this trainer?")){
+
+        btn.closest(".trainer-card").remove();
+
+    }
+
+});
+
+// ===========================
+// EDIT TRAINER
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".edit-btn");
+
+    if(!btn) return;
+
+    editingTrainer =
+    btn.closest(".trainer-card");
+
+    const viewBtn =
+    editingTrainer.querySelector(".view-btn");
+
+    document.getElementById("trainerName").value =
+    viewBtn.dataset.name;
+
+    document.getElementById("trainerSpecialty").value =
+    viewBtn.dataset.specialty;
+
+    document.getElementById("trainerPhone").value =
+    viewBtn.dataset.phone;
+
+    document.getElementById("trainerEmail").value =
+    viewBtn.dataset.email;
+
+    addTrainerModal.style.display = "flex";
+
+});
+
+</script>
+
+{% endblock %}
+

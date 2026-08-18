@@ -1,0 +1,135 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="project-hero">
+
+    <div class="project-content">
+
+        <span class="project-tag">
+            🦷 CRM Automation Practice Project
+        </span>
+
+        <h1>Bright Smile Dental Clinic CRM</h1>
+
+        <p class="project-description">
+            A CRM-inspired web application built to demonstrate
+            patient management, appointment scheduling,
+            and workflow automation concepts.
+        </p>
+
+        <div class="project-buttons">
+
+            <a href="{% url 'dental_dashboard' %}" class="btn-primary">
+                🚀 Launch CRM Demo
+            </a>
+
+            <a href="#features" class="btn-secondary">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="features" class="project-section">
+
+    <h2>Business Problem</h2>
+
+    <p>
+        Bright Smile Dental Clinic manually managed patient inquiries,
+        appointments, and follow-ups, resulting in delayed responses
+        and missed appointments.
+    </p>
+
+</section>
+
+<section class="project-section">
+
+    <h2>Solution</h2>
+
+    <p>
+        Build a CRM dashboard where staff can manage patients,
+        appointments, conversations, and automated workflows
+        from a single platform.
+    </p>
+
+</section>
+
+<section class="project-section">
+
+    <h2>Key Features</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            👥
+            <h3>Patient Management</h3>
+            <p>Organize patient information.</p>
+        </div>
+
+        <div class="feature-card">
+            📅
+            <h3>Appointments</h3>
+            <p>Manage bookings and schedules.</p>
+        </div>
+
+        <div class="feature-card">
+            🤖
+            <h3>Automation</h3>
+            <p>Simulated reminder workflows.</p>
+        </div>
+
+        <div class="feature-card">
+            📈
+            <h3>Reports</h3>
+            <p>Track clinic performance.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="project-section">
+
+    <h2>Technologies Used</h2>
+
+    <div class="tech-stack">
+
+        <span>Django</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+
+    </div>
+
+</section>
+
+<section class="project-info">
+
+    <div class="info-card">
+        <h3>🏢 Client</h3>
+        <p>Bright Smile Dental Clinic</p>
+    </div>
+
+    <div class="info-card">
+        <h3>👨‍💻 My Role</h3>
+        <p>Full Stack Web Developer</p>
+    </div>
+
+    <div class="info-card">
+        <h3>⏳ Duration</h3>
+        <p>Practice Project</p>
+    </div>
+
+    <div class="info-card">
+        <h3>🛠 Technologies</h3>
+        <p>Django • HTML • CSS • JavaScript</p>
+    </div>
+
+</section>
+
+{% endblock %}

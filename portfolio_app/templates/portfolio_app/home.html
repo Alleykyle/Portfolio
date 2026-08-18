@@ -1,4 +1,4 @@
-{% extends 'portfolio_app/base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <body>
 
 <nav class="navbar">
 
@@ -75,7 +74,7 @@
 
     <div class="hero-right">
 
-        <img src="{% static 'portfolio_app/images/profile.png' %}" alt="Profile">
+        <img src="{% static 'portfolio_app/images/profile-pic.png' %}" alt="Profile">
 
     </div>
 
@@ -204,88 +203,60 @@
 
     <div class="projects-grid">
 
-        <a href="{% url 'dental_project' %}" class="project-card">
+        <a href="{% url 'dental_overview' %}" class="project-card">
 
             <div class="project-tag">Demo Project</div>
 
-            <h3>🦷 Bright Smile Dental Clinic</h3>
+            <h3>🦷 Bright Smile Dental CRM</h3>
 
             <p>
-                CRM workflow for appointment booking,
-                automated reminders,
-                and patient management.
+                A modern dental clinic CRM for managing
+                patients, appointments, conversations,
+                workflows, reports, email communication,
+                and clinic settings.
             </p>
 
             <div class="project-tools">
 
+                <span>Django</span>
+                <span>Python</span>
+                <span>JavaScript</span>
                 <span>CRM</span>
-                <span>Automation</span>
-                <span>Workflow</span>
 
+            </div>
+
+            <div class="project-link">
+                View Project →
             </div>
 
         </a>
 
-        <div class="project-card">
+        <a href="{% url 'gym_dashboard' %}" class="project-card">
 
-            <div class="project-tag">Coming Soon</div>
+            <div class="project-tag">Demo Project</div>
 
-            <h3>🏠 Real Estate CRM</h3>
+            <h3>🏋 FitCore Gym CRM</h3>
 
             <p>
-                Lead tracking system for property inquiries,
-                pipeline management, and automated follow-up.
+                A modern gym management CRM for managing
+                members, trainers, memberships, payments,
+                attendance, class schedules, and reports.
             </p>
 
             <div class="project-tools">
 
-                <span>Pipeline</span>
-                <span>Lead Management</span>
+                <span>Django</span>
+                <span>Python</span>
+                <span>JavaScript</span>
+                <span>Chart.js</span>
 
             </div>
 
-        </div>
-
-        <div class="project-card">
-
-            <div class="project-tag">Coming Soon</div>
-
-            <h3>💪 Gym Membership Funnel</h3>
-
-            <p>
-                Landing page, membership registration,
-                automated onboarding emails,
-                and appointment scheduling.
-            </p>
-
-            <div class="project-tools">
-
-                <span>Funnels</span>
-                <span>Email</span>
-
+            <div class="project-link">
+                View Project →
             </div>
 
-        </div>
-
-        <div class="project-card">
-
-            <div class="project-tag">Coming Soon</div>
-
-            <h3>🍽 Restaurant Reservation</h3>
-
-            <p>
-                Reservation system with automated confirmation,
-                reminders, and customer follow-up.
-            </p>
-
-            <div class="project-tools">
-
-                <span>Calendar</span>
-                <span>SMS</span>
-
-            </div>
-
-        </div>
+        </a>
 
     </div>
 
@@ -317,17 +288,31 @@
 
             <div class="contact-item">
                 <span>💻</span>
+
                 <div>
                     <h3>GitHub</h3>
-                    <p>github.com/Alleykyle</p>
+
+                    <a
+                        href="https://github.com/Alleykyle"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        github.com/Alleykyle
+                    </a>
                 </div>
             </div>
 
             <div class="contact-item">
                 <span>💼</span>
+
                 <div>
                     <h3>LinkedIn</h3>
-                    <p>https://www.linkedin.com/in/regala-alley-kyle-197822421/</p>
+
+                    <a
+                        href="https://www.linkedin.com/in/regala-alley-kyle-197822421/"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        LinkedIn Profile
+                    </a>
                 </div>
             </div>
 
@@ -335,7 +320,7 @@
 
         <div class="contact-buttons">
 
-            <a href="mailto:your.email@gmail.com" class="primary-btn">
+            <a href="mailto:alleykyle2@gmail.com" class="primary-btn">
                 Email Me
             </a>
 
@@ -349,7 +334,6 @@
 
 </section>
 
-</body>
 </body>
 
 </html>

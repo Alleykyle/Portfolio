@@ -1,0 +1,79 @@
+<aside class="crm-sidebar">
+
+    <div class="sidebar-logo">
+
+        <h2>🦷 Bright Smile</h2>
+
+        <p>Dental Clinic CRM</p>
+
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="{% url 'dental_project' %}"
+            class="{% if active_page == 'dashboard' %}active{% endif %}">
+                <span>📊</span>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_patients' %}"
+            class="{% if active_page == 'patients' %}active{% endif %}">
+                <span>👥</span>
+                Patients
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_appointments' %}"
+            class="{% if active_page == 'appointments' %}active{% endif %}">
+                <span>📅</span>
+                Appointments
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_conversations' %}"
+            class="{% if active_page == 'conversations' %}active{% endif %}">
+                <span>💬</span>
+                Conversations
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_workflows' %}"
+            class="{% if active_page == 'workflows' %}active{% endif %}">
+                <span>🤖</span>
+                Workflows
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_email' %}"
+            class="{% if active_page == 'email' %}active{% endif %}">
+                <span>📧</span>
+                Email Campaigns
+            </a>
+        </li>
+
+        <li>
+           <a href="{% url 'dental_reports' %}"
+            class="{% if active_page == 'reports' %}active{% endif %}">
+                <span>📈</span>
+                Reports
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'dental_settings' %}"
+            class="{% if active_page == 'settings' %}active{% endif %}">
+                <span>⚙️</span>
+                Settings
+            </a>
+        </li>
+
+    </ul>
+
+</aside>

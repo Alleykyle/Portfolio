@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FitCore Gym CRM</title>
+
+    <link rel="stylesheet"
+          href="{% static 'portfolio_app/css/gym.css' %}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="gym-layout">
+
+    {% include "portfolio_app/projects/partials/gym_sidebar.html" %}
+
+    <div class="gym-main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>💪 FitCore Gym Management</h2>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button class="notification-btn">
+
+                    🔔
+
+                </button>
+
+                <img src="{% static 'portfolio_app/images/profile.png' %}"
+                     class="profile-pic"
+                     alt="Profile">
+
+            </div>
+
+        </header>
+
+        <main class="gym-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+</div>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>

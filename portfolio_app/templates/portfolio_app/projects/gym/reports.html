@@ -1,0 +1,161 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>📊 Reports & Analytics</h1>
+
+        <p>Monitor your gym performance.</p>
+
+    </div>
+
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">💰</div>
+
+        <div>
+
+            <h2>$18,450</h2>
+
+            <p>Total Revenue</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">👥</div>
+
+        <div>
+
+            <h2>286</h2>
+
+            <p>Total Members</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">🏋</div>
+
+        <div>
+
+            <h2>14</h2>
+
+            <p>Active Trainers</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">📅</div>
+
+        <div>
+
+            <h2>42</h2>
+
+            <p>Classes This Month</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <div class="section-header">
+
+            <h2>Monthly Revenue</h2>
+
+        </div>
+
+        <canvas id="revenueChart"></canvas>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div class="section-header">
+
+            <h2>Membership Distribution</h2>
+
+        </div>
+
+        <canvas id="membershipChart"></canvas>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+new Chart(
+
+document.getElementById("revenueChart"),
+
+{
+
+type:"bar",
+
+data:{
+
+labels:["Jan","Feb","Mar","Apr","May","Jun"],
+
+datasets:[{
+
+label:"Revenue",
+
+data:[2200,3100,2800,4000,3600,2750]
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById("membershipChart"),
+
+{
+
+type:"doughnut",
+
+data:{
+
+labels:["Basic","Standard","Premium"],
+
+datasets:[{
+
+data:[65,95,126]
+
+}]
+
+}
+
+});
+
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,775 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>👥 Members</h1>
+
+        <p>Manage all gym members.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addMemberBtn">
+
+        + Add Member
+
+    </button>
+
+</div>
+
+<!-- Search -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="memberSearch"
+        placeholder="Search members...">
+
+</div>
+
+<!-- Members Table -->
+
+<div class="dashboard-card">
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Member</th>
+
+            <th>Membership</th>
+
+            <th>Trainer</th>
+
+            <th>Status</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="memberBody">
+
+        <tr>
+
+            <td>
+
+                <div class="member-info">
+
+                    <div class="member-avatar">
+
+                        JS
+
+                    </div>
+
+                    <div>
+
+                        <strong>John Smith</strong>
+
+                        <small>#1001</small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>Premium</td>
+
+            <td>Mike Johnson</td>
+
+            <td>
+
+                <span class="status active">
+
+                    Active
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-avatar="JS"
+
+                    data-name="John Smith"
+
+                    data-id="1001"
+
+                    data-membership="Premium"
+
+                    data-trainer="Mike Johnson"
+
+                    data-status="active">
+
+                    View
+
+                </button>
+
+                <button
+                    class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+                <div class="member-info">
+
+                    <div class="member-avatar">
+
+                        AC
+
+                    </div>
+
+                    <div>
+
+                        <strong>Anna Cruz</strong>
+
+                        <small>#1002</small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>Standard</td>
+
+            <td>Sarah Lee</td>
+
+            <td>
+
+                <span class="status active">
+
+                    Active
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-avatar="AC"
+
+                    data-name="Anna Cruz"
+
+                    data-id="1002"
+
+                    data-membership="Standard"
+
+                    data-trainer="Sarah Lee"
+
+                    data-status="active">
+
+                    View
+
+                </button>
+
+                <button
+                    class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+                <div class="member-info">
+
+                    <div class="member-avatar">
+
+                        ML
+
+                    </div>
+
+                    <div>
+
+                        <strong>Michael Lee</strong>
+
+                        <small>#1003</small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>Basic</td>
+
+            <td>Mike Johnson</td>
+
+            <td>
+
+                <span class="status expired">
+
+                    Expired
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-avatar="ML"
+
+                    data-name="Michael Lee"
+
+                    data-id="1003"
+
+                    data-membership="Basic"
+
+                    data-trainer="Mike Johnson"
+
+                    data-status="expired">
+
+                    View
+
+                </button>
+
+                <button
+                    class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+</div>
+
+<!-- =========================================
+VIEW MEMBER MODAL
+========================================= -->
+
+<div id="memberModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-modal">&times;</span>
+
+        <div class="modal-header">
+
+            <div class="member-avatar" id="modalAvatar">
+
+                JS
+
+            </div>
+
+            <div>
+
+                <h2 id="modalName">
+
+                    John Smith
+
+                </h2>
+
+                <p>
+
+                    Member ID #
+
+                    <span id="modalId">
+
+                        1001
+
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Membership</strong>
+
+            <span id="modalMembership">
+
+                Premium
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Trainer</strong>
+
+            <span id="modalTrainer">
+
+                Mike Johnson
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Status</strong>
+
+            <span
+                id="modalStatus"
+                class="status active">
+
+                Active
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Phone</strong>
+
+            <span>
+
+                +1 (555) 123-4567
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Email</strong>
+
+            <span>
+
+                john@example.com
+
+            </span>
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button class="action-btn">
+
+                Edit Member
+
+            </button>
+
+            <button class="new-btn">
+
+                Renew Membership
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================
+ADD MEMBER MODAL
+===================================== -->
+
+<div id="addMemberModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeAddMember">
+
+            &times;
+
+        </span>
+
+        <h2>Add New Member</h2>
+
+        <div class="form-group">
+
+            <label>Full Name</label>
+
+            <input
+                type="text"
+                id="memberName">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Membership</label>
+
+            <select id="memberMembership">
+
+                <option>Basic</option>
+
+                <option>Standard</option>
+
+                <option>Premium</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Trainer</label>
+
+            <select id="memberTrainer">
+
+                <option>Mike Johnson</option>
+
+                <option>Sarah Lee</option>
+
+                <option>David Clark</option>
+
+            </select>
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="saveMember">
+
+            Save Member
+
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+let editingRow = null;
+
+const memberModal =
+document.getElementById("memberModal");
+
+const closeModal =
+document.querySelector(".close-modal");
+
+document.addEventListener("click", function(e){
+
+    const btn =
+    e.target.closest(".view-btn");
+
+    if(!btn) return;
+
+    document.getElementById("modalAvatar").textContent =
+    btn.dataset.avatar;
+
+    document.getElementById("modalName").textContent =
+    btn.dataset.name;
+
+    document.getElementById("modalId").textContent =
+    btn.dataset.id;
+
+    document.getElementById("modalMembership").textContent =
+    btn.dataset.membership;
+
+    document.getElementById("modalTrainer").textContent =
+    btn.dataset.trainer;
+
+    const status =
+    document.getElementById("modalStatus");
+
+    status.textContent =
+    btn.dataset.status.charAt(0).toUpperCase() +
+    btn.dataset.status.slice(1);
+
+    status.className =
+    "status " + btn.dataset.status;
+
+    memberModal.style.display =
+    "flex";
+
+});
+
+closeModal.onclick = function(){
+
+    memberModal.style.display =
+    "none";
+
+}
+
+window.onclick = function(e){
+
+    if(e.target === memberModal){
+
+        memberModal.style.display =
+        "none";
+
+    }
+
+}
+
+// ======================
+// Add Member Modal
+// ======================
+
+const addMemberBtn =
+document.getElementById("addMemberBtn");
+
+const addMemberModal =
+document.getElementById("addMemberModal");
+
+const closeAddMember =
+document.getElementById("closeAddMember");
+
+addMemberBtn.addEventListener("click", function () {
+
+    console.log("Add Member clicked");
+    addMemberModal.style.display = "flex";
+
+});
+
+closeAddMember.onclick = function(){
+
+    addMemberModal.style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === addMemberModal){
+
+        addMemberModal.style.display = "none";
+
+    }
+
+});
+
+
+// ======================
+// Save Member
+// ======================
+
+const saveMember = document.getElementById("saveMember");
+const memberBody = document.getElementById("memberBody");
+
+if (saveMember && memberBody) {
+
+    saveMember.addEventListener("click", function () {
+
+        const name = document.getElementById("memberName").value.trim();
+        const membership = document.getElementById("memberMembership").value;
+        const trainer = document.getElementById("memberTrainer").value;
+
+        if (name === "") {
+
+            alert("Please enter the member's name.");
+
+            return;
+
+        }
+
+        // Generate initials
+        const initials = name
+            .split(" ")
+            .map(word => word[0])
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+        // Generate Member ID
+        const memberId = 1000 + memberBody.rows.length + 1;
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>
+
+                <div class="member-info">
+
+                    <div class="member-avatar">
+
+                        ${initials}
+
+                    </div>
+
+                    <div>
+
+                        <strong>${name}</strong>
+
+                        <small>#${memberId}</small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+            <td>${membership}</td>
+
+            <td>${trainer}</td>
+
+            <td>
+
+                <span class="status active">
+
+                    Active
+
+                </span>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-avatar="${initials}"
+
+                    data-name="${name}"
+
+                    data-id="${memberId}"
+
+                    data-membership="${membership}"
+
+                    data-trainer="${trainer}"
+
+                    data-status="active">
+
+                    View
+
+                </button>
+
+                <button
+                    class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+
+            </td>
+        `;
+
+        if(editingRow){
+
+            editingRow.innerHTML = row.innerHTML;
+
+            editingRow = null;
+
+        }else{
+
+            memberBody.appendChild(row);
+
+        }
+
+        document.getElementById("memberName").value = "";
+        document.getElementById("memberMembership").selectedIndex = 0;
+        document.getElementById("memberTrainer").selectedIndex = 0;
+
+        addMemberModal.style.display = "none";
+
+    });
+
+}
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".edit-btn");
+
+    if(!btn) return;
+
+    editingRow = btn.closest("tr");
+
+    const cells = editingRow.querySelectorAll("td");
+
+    document.getElementById("memberName").value =
+        cells[0].querySelector("strong").textContent;
+
+    document.getElementById("memberMembership").value =
+        cells[1].textContent.trim();
+
+    document.getElementById("memberTrainer").value =
+        cells[2].textContent.trim();
+
+    addMemberModal.style.display = "flex";
+
+});
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".delete-btn");
+
+    if(!btn) return;
+
+    if(confirm("Delete this member?")){
+
+        btn.closest("tr").remove();
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

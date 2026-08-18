@@ -1,0 +1,571 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>📅 Class Schedule</h1>
+
+        <p>Manage gym classes.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addClassBtn">
+
+        + New Class
+
+    </button>
+
+</div>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="classSearch"
+        placeholder="Search class...">
+
+</div>
+
+<div class="dashboard-card">
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Class</th>
+            <th>Trainer</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="classBody">
+
+        <tr>
+
+            <td>Yoga</td>
+
+            <td>Sarah Lee</td>
+
+            <td>August 3, 2026</td>
+
+            <td>8:00 AM</td>
+
+            <td>20</td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-class="Yoga"
+
+                    data-trainer="Sarah Lee"
+
+                    data-date="2026-08-03"
+
+                    data-time="8:00 AM"
+
+                    data-capacity="20">
+
+                    View
+
+                </button>
+
+                <button class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>HIIT</td>
+
+            <td>Mike Johnson</td>
+
+            <td>August 4, 2026</td>
+
+            <td>6:00 PM</td>
+
+            <td>15</td>
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-class="HIIT"
+
+                    data-trainer="Mike Johnson"
+
+                    data-date="2026-08-04"
+
+                    data-time="6:00 PM"
+
+                    data-capacity="15">
+
+                    View
+
+                </button>
+
+                <button class="action-btn edit-btn">
+
+                    Edit</button>
+
+                <button class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+</div>
+
+<!-- ===========================
+ADD CLASS MODAL
+=========================== -->
+
+<div id="addClassModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeAddClass">
+
+            &times;
+
+        </span>
+
+        <h2>New Class</h2>
+
+        <div class="form-group">
+
+            <label>Class Name</label>
+
+            <input
+                type="text"
+                id="className">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Trainer</label>
+
+            <select id="classTrainer">
+
+                <option>Mike Johnson</option>
+                <option>Sarah Lee</option>
+                <option>David Clark</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Date</label>
+
+            <input
+                type="date"
+                id="classDate">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Time</label>
+
+            <input
+                type="time"
+                id="classTime">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Capacity</label>
+
+            <input
+                type="number"
+                id="classCapacity">
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="saveClass">
+
+            Save Class
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+VIEW CLASS MODAL
+=========================== -->
+
+<div id="classModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeClassModal">
+
+            &times;
+
+        </span>
+
+        <h2 id="modalClassName">
+
+            Yoga
+
+        </h2>
+
+        <div class="info-row">
+
+            <strong>Trainer</strong>
+
+            <span id="modalTrainer">
+
+                Sarah Lee
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Date</strong>
+
+            <span id="modalDate">
+
+                August 3, 2026
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Time</strong>
+
+            <span id="modalTime">
+
+                8:00 AM
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Capacity</strong>
+
+            <span id="modalCapacity">
+
+                20 Members
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// SEARCH CLASS
+// ===========================
+
+const classSearch = document.getElementById("classSearch");
+
+if(classSearch){
+
+    classSearch.addEventListener("keyup", function(){
+
+        const filter = this.value.toLowerCase();
+
+        document.querySelectorAll("#classBody tr").forEach(function(row){
+
+            row.style.display =
+                row.innerText.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ===========================
+// ADD CLASS MODAL
+// ===========================
+
+const addClassBtn = document.getElementById("addClassBtn");
+const addClassModal = document.getElementById("addClassModal");
+const closeAddClass = document.getElementById("closeAddClass");
+
+let editingRow = null;
+
+addClassBtn.onclick = function(){
+
+    editingRow = null;
+
+    document.getElementById("className").value = "";
+    document.getElementById("classTrainer").selectedIndex = 0;
+    document.getElementById("classDate").value = "";
+    document.getElementById("classTime").value = "";
+    document.getElementById("classCapacity").value = "";
+
+    addClassModal.style.display = "flex";
+
+};
+
+closeAddClass.onclick = function(){
+
+    addClassModal.style.display = "none";
+
+};
+
+window.addEventListener("click", function(e){
+
+    if(e.target === addClassModal){
+
+        addClassModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// SAVE CLASS
+// ===========================
+
+document.getElementById("saveClass").onclick = function(){
+
+    const name = document.getElementById("className").value.trim();
+    const trainer = document.getElementById("classTrainer").value;
+    const date = document.getElementById("classDate").value;
+    const time = document.getElementById("classTime").value;
+    const capacity = document.getElementById("classCapacity").value;
+
+    if(name === "" || date === "" || time === ""){
+
+        alert("Please complete all required fields.");
+
+        return;
+
+    }
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+
+        <td>${name}</td>
+
+        <td>${trainer}</td>
+
+        <td>${date}</td>
+
+        <td>${time}</td>
+
+        <td>${capacity}</td>
+
+        <td>
+
+            <button
+                class="action-btn view-btn"
+
+                data-class="${name}"
+
+                data-trainer="${trainer}"
+
+                data-date="${date}"
+
+                data-time="${time}"
+
+                data-capacity="${capacity}">
+
+                View
+
+            </button>
+
+            <button class="action-btn edit-btn">
+
+                Edit
+
+            </button>
+
+            <button class="action-btn delete-btn">
+
+                Delete
+
+            </button>
+
+        </td>
+
+    `;
+
+    if(editingRow){
+
+        editingRow.replaceWith(row);
+
+        editingRow = null;
+
+    }else{
+
+        document.getElementById("classBody").appendChild(row);
+
+    }
+
+    addClassModal.style.display = "none";
+
+};
+
+// ===========================
+// VIEW CLASS
+// ===========================
+
+const classModal = document.getElementById("classModal");
+const closeClassModal = document.getElementById("closeClassModal");
+
+document.addEventListener("click", function(e){
+
+    const viewBtn = e.target.closest(".view-btn");
+
+    if(viewBtn){
+
+        document.getElementById("modalClassName").textContent =
+        viewBtn.dataset.class;
+
+        document.getElementById("modalTrainer").textContent =
+        viewBtn.dataset.trainer;
+
+        document.getElementById("modalDate").textContent =
+        viewBtn.dataset.date;
+
+        document.getElementById("modalTime").textContent =
+        viewBtn.dataset.time;
+
+        document.getElementById("modalCapacity").textContent =
+        viewBtn.dataset.capacity + " Members";
+
+        classModal.style.display = "flex";
+
+    }
+
+});
+
+closeClassModal.onclick = function(){
+
+    classModal.style.display = "none";
+
+};
+
+window.addEventListener("click", function(e){
+
+    if(e.target === classModal){
+
+        classModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// DELETE CLASS
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".delete-btn");
+
+    if(!btn) return;
+
+    if(confirm("Delete this class?")){
+
+        btn.closest("tr").remove();
+
+    }
+
+});
+
+// ===========================
+// EDIT CLASS
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".edit-btn");
+
+    if(!btn) return;
+
+    editingRow = btn.closest("tr");
+
+    const viewBtn = editingRow.querySelector(".view-btn");
+
+    document.getElementById("className").value =
+    viewBtn.dataset.class;
+
+    document.getElementById("classTrainer").value =
+    viewBtn.dataset.trainer;
+
+    document.getElementById("classDate").value =
+    viewBtn.dataset.date;
+
+    document.getElementById("classTime").value =
+    viewBtn.dataset.time;
+
+    document.getElementById("classCapacity").value =
+    viewBtn.dataset.capacity;
+
+    addClassModal.style.display = "flex";
+
+});
+
+</script>
+
+{% endblock %}
+
+{% endblock %}

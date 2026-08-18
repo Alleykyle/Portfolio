@@ -1,0 +1,1119 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>📋 Attendance</h1>
+
+        <p>Track member check-ins and attendance.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addAttendanceBtn">
+
+        + Check In
+
+    </button>
+
+</div>
+
+
+<!-- ===========================
+ATTENDANCE SUMMARY
+=========================== -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+        <div>
+
+            <h2 id="todayCount">
+                24
+            </h2>
+
+            <p>Today's Check-ins</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            🟢
+        </div>
+
+        <div>
+
+            <h2 id="currentlyInside">
+                8
+            </h2>
+
+            <p>Currently Inside</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📅
+        </div>
+
+        <div>
+
+            <h2>
+                156
+            </h2>
+
+            <p>This Month</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📈
+        </div>
+
+        <div>
+
+            <h2>
+                87%
+            </h2>
+
+            <p>Attendance Rate</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+SEARCH
+=========================== -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="attendanceSearch"
+        placeholder="Search member...">
+
+</div>
+
+
+<!-- ===========================
+ATTENDANCE TABLE
+=========================== -->
+
+<div class="dashboard-card">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Member</th>
+
+                <th>Date</th>
+
+                <th>Time In</th>
+
+                <th>Time Out</th>
+
+                <th>Status</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="attendanceBody">
+
+
+            <!-- MEMBER 1 -->
+
+            <tr>
+
+                <td>
+
+                    <div class="member-info">
+
+                        <div class="member-avatar">
+
+                            JS
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                John Smith
+                            </strong>
+
+                            <small>
+                                #1001
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+                    August 12, 2026
+                </td>
+
+
+                <td>
+                    8:02 AM
+                </td>
+
+
+                <td>
+                    10:10 AM
+                </td>
+
+
+                <td>
+
+                    <span class="status active">
+                        Completed
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="action-btn view-btn"
+
+                        data-avatar="JS"
+
+                        data-name="John Smith"
+
+                        data-id="1001"
+
+                        data-date="August 12, 2026"
+
+                        data-in="8:02 AM"
+
+                        data-out="10:10 AM"
+
+                        data-status="Completed">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        class="action-btn edit-btn">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="action-btn delete-btn">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <!-- MEMBER 2 -->
+
+            <tr>
+
+                <td>
+
+                    <div class="member-info">
+
+                        <div class="member-avatar">
+
+                            AC
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Anna Cruz
+                            </strong>
+
+                            <small>
+                                #1002
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+                    August 12, 2026
+                </td>
+
+
+                <td>
+                    9:15 AM
+                </td>
+
+
+                <td>
+                    --
+                </td>
+
+
+                <td>
+
+                    <span class="status pending">
+                        Checked In
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="action-btn view-btn"
+
+                        data-avatar="AC"
+
+                        data-name="Anna Cruz"
+
+                        data-id="1002"
+
+                        data-date="August 12, 2026"
+
+                        data-in="9:15 AM"
+
+                        data-out="--"
+
+                        data-status="Checked In">
+
+                        View
+
+                    </button>
+
+
+                    <button
+                        class="action-btn edit-btn">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="action-btn delete-btn">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- ===========================
+ADD ATTENDANCE MODAL
+=========================== -->
+
+<div
+    id="addAttendanceModal"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <span
+            class="close-modal"
+            id="closeAddAttendance">
+
+            &times;
+
+        </span>
+
+
+        <h2>
+            Check In Member
+        </h2>
+
+
+        <div class="form-group">
+
+            <label>
+                Member Name
+            </label>
+
+            <input
+                type="text"
+                id="attendanceName"
+                placeholder="Enter member name">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Member ID
+            </label>
+
+            <input
+                type="text"
+                id="attendanceId"
+                placeholder="Example: 1003">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="attendanceDate">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Time In
+            </label>
+
+            <input
+                type="time"
+                id="attendanceTime">
+
+        </div>
+
+
+        <button
+            class="new-btn"
+            id="saveAttendance">
+
+            Check In
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- ===========================
+VIEW ATTENDANCE MODAL
+=========================== -->
+
+<div
+    id="attendanceModal"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <span
+            class="close-modal"
+            id="closeAttendanceModal">
+
+            &times;
+
+        </span>
+
+
+        <div class="modal-header">
+
+
+            <div
+                class="member-avatar"
+                id="modalAvatar">
+
+                JS
+
+            </div>
+
+
+            <div>
+
+                <h2 id="modalName">
+                    John Smith
+                </h2>
+
+                <p>
+
+                    Member ID #
+
+                    <span id="modalId">
+                        1001
+                    </span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <strong>
+                Date
+            </strong>
+
+            <span id="modalDate">
+                August 12, 2026
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <strong>
+                Time In
+            </strong>
+
+            <span id="modalTimeIn">
+                8:02 AM
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <strong>
+                Time Out
+            </strong>
+
+            <span id="modalTimeOut">
+                10:10 AM
+            </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <strong>
+                Status
+            </strong>
+
+            <span
+                id="modalStatus"
+                class="status active">
+
+                Completed
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// SEARCH ATTENDANCE
+// ===========================
+
+const attendanceSearch =
+    document.getElementById("attendanceSearch");
+
+if (attendanceSearch) {
+
+    attendanceSearch.addEventListener("keyup", function () {
+
+        const filter = this.value.toLowerCase();
+
+        document.querySelectorAll("#attendanceBody tr")
+            .forEach(function (row) {
+
+                row.style.display =
+                    row.innerText.toLowerCase().includes(filter)
+                        ? ""
+                        : "none";
+
+            });
+
+    });
+
+}
+
+
+// ===========================
+// ADD ATTENDANCE MODAL
+// ===========================
+
+const addAttendanceBtn =
+    document.getElementById("addAttendanceBtn");
+
+const addAttendanceModal =
+    document.getElementById("addAttendanceModal");
+
+const closeAddAttendance =
+    document.getElementById("closeAddAttendance");
+
+let editingAttendance = null;
+
+
+if (addAttendanceBtn) {
+
+    addAttendanceBtn.addEventListener("click", function () {
+
+        editingAttendance = null;
+
+        document.getElementById("attendanceName").value = "";
+        document.getElementById("attendanceId").value = "";
+        document.getElementById("attendanceDate").value = "";
+        document.getElementById("attendanceTime").value = "";
+
+        addAttendanceModal.style.display = "flex";
+
+    });
+
+}
+
+
+if (closeAddAttendance) {
+
+    closeAddAttendance.addEventListener("click", function () {
+
+        addAttendanceModal.style.display = "none";
+
+    });
+
+}
+
+
+// Close Add Modal when clicking outside
+
+window.addEventListener("click", function (e) {
+
+    if (e.target === addAttendanceModal) {
+
+        addAttendanceModal.style.display = "none";
+
+    }
+
+});
+
+
+// ===========================
+// SAVE / UPDATE ATTENDANCE
+// ===========================
+
+const saveAttendance =
+    document.getElementById("saveAttendance");
+
+
+if (saveAttendance) {
+
+    saveAttendance.addEventListener("click", function () {
+
+        const name =
+            document.getElementById("attendanceName")
+                .value.trim();
+
+        const id =
+            document.getElementById("attendanceId")
+                .value.trim();
+
+        const date =
+            document.getElementById("attendanceDate")
+                .value;
+
+        const time =
+            document.getElementById("attendanceTime")
+                .value;
+
+
+        if (
+            name === "" ||
+            id === "" ||
+            date === "" ||
+            time === ""
+        ) {
+
+            alert("Please complete all fields.");
+
+            return;
+
+        }
+
+
+        // Convert date to readable format
+
+        const dateObject =
+            new Date(date + "T00:00:00");
+
+        const formattedDate =
+            dateObject.toLocaleDateString(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            );
+
+
+        // Convert time to readable format
+
+        const timeObject =
+            new Date("1970-01-01T" + time);
+
+        const formattedTime =
+            timeObject.toLocaleTimeString(
+                "en-US",
+                {
+                    hour: "numeric",
+                    minute: "2-digit"
+                }
+            );
+
+
+        // Create initials
+
+        const avatar =
+            name
+                .split(" ")
+                .map(word => word.charAt(0))
+                .join("")
+                .substring(0, 2)
+                .toUpperCase();
+
+
+        // Create new row
+
+        const row =
+            document.createElement("tr");
+
+
+        row.innerHTML = `
+
+            <td>
+
+                <div class="member-info">
+
+                    <div class="member-avatar">
+
+                        ${avatar}
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            ${name}
+                        </strong>
+
+                        <small>
+                            #${id}
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${formattedDate}
+            </td>
+
+
+            <td>
+                ${formattedTime}
+            </td>
+
+
+            <td>
+                --
+            </td>
+
+
+            <td>
+
+                <span class="status pending">
+
+                    Checked In
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="action-btn view-btn"
+
+                    data-avatar="${avatar}"
+
+                    data-name="${name}"
+
+                    data-id="${id}"
+
+                    data-date="${formattedDate}"
+
+                    data-in="${formattedTime}"
+
+                    data-out="--"
+
+                    data-status="Checked In">
+
+                    View
+
+                </button>
+
+
+                <button
+                    class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+
+                <button
+                    class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        `;
+
+
+        if (editingAttendance) {
+
+            editingAttendance.replaceWith(row);
+
+            editingAttendance = null;
+
+        } else {
+
+            document
+                .getElementById("attendanceBody")
+                .appendChild(row);
+
+        }
+
+
+        addAttendanceModal.style.display = "none";
+
+    });
+
+}
+
+
+// ===========================
+// VIEW ATTENDANCE
+// ===========================
+
+const attendanceModal =
+    document.getElementById("attendanceModal");
+
+const closeAttendanceModal =
+    document.getElementById("closeAttendanceModal");
+
+
+document.addEventListener("click", function (e) {
+
+    const btn =
+        e.target.closest(".view-btn");
+
+
+    if (!btn) return;
+
+
+    document.getElementById("modalAvatar")
+        .textContent = btn.dataset.avatar;
+
+
+    document.getElementById("modalName")
+        .textContent = btn.dataset.name;
+
+
+    document.getElementById("modalId")
+        .textContent = btn.dataset.id;
+
+
+    document.getElementById("modalDate")
+        .textContent = btn.dataset.date;
+
+
+    document.getElementById("modalTimeIn")
+        .textContent = btn.dataset.in;
+
+
+    document.getElementById("modalTimeOut")
+        .textContent = btn.dataset.out;
+
+
+    const status =
+        document.getElementById("modalStatus");
+
+
+    status.textContent =
+        btn.dataset.status;
+
+
+    if (btn.dataset.status === "Completed") {
+
+        status.className =
+            "status active";
+
+    } else {
+
+        status.className =
+            "status pending";
+
+    }
+
+
+    attendanceModal.style.display = "flex";
+
+});
+
+
+// ===========================
+// CLOSE VIEW MODAL
+// ===========================
+
+if (closeAttendanceModal) {
+
+    closeAttendanceModal.addEventListener(
+        "click",
+        function () {
+
+            attendanceModal.style.display = "none";
+
+        }
+    );
+
+}
+
+
+window.addEventListener("click", function (e) {
+
+    if (e.target === attendanceModal) {
+
+        attendanceModal.style.display = "none";
+
+    }
+
+});
+
+
+// ===========================
+// DELETE ATTENDANCE
+// ===========================
+
+document.addEventListener("click", function (e) {
+
+    const btn =
+        e.target.closest(".delete-btn");
+
+
+    if (!btn) return;
+
+
+    const row =
+        btn.closest("tr");
+
+
+    const member =
+        row.querySelector("strong");
+
+
+    if (
+        confirm(
+            "Delete attendance record for " +
+            member.textContent +
+            "?"
+        )
+    ) {
+
+        row.remove();
+
+    }
+
+});
+
+
+// ===========================
+// EDIT ATTENDANCE
+// ===========================
+
+document.addEventListener("click", function (e) {
+
+    const btn =
+        e.target.closest(".edit-btn");
+
+
+    if (!btn) return;
+
+
+    editingAttendance =
+        btn.closest("tr");
+
+
+    const viewBtn =
+        editingAttendance.querySelector(".view-btn");
+
+
+    document.getElementById("attendanceName")
+        .value = viewBtn.dataset.name;
+
+
+    document.getElementById("attendanceId")
+        .value = viewBtn.dataset.id;
+
+
+    // The original date is displayed as
+    // "August 12, 2026", so convert it
+    // back into YYYY-MM-DD.
+
+    const dateText =
+        viewBtn.dataset.date;
+
+
+    const dateObject =
+        new Date(dateText);
+
+
+    if (!isNaN(dateObject)) {
+
+        const year =
+            dateObject.getFullYear();
+
+        const month =
+            String(
+                dateObject.getMonth() + 1
+            ).padStart(2, "0");
+
+        const day =
+            String(
+                dateObject.getDate()
+            ).padStart(2, "0");
+
+
+        document.getElementById("attendanceDate")
+            .value =
+            `${year}-${month}-${day}`;
+
+    }
+
+
+    // Convert displayed time back to
+    // the input[type="time"] format.
+
+    const timeText =
+        viewBtn.dataset.in;
+
+
+    if (timeText !== "--") {
+
+        const timeDate =
+            new Date(
+                "1970-01-01 " + timeText
+            );
+
+
+        if (!isNaN(timeDate)) {
+
+            const hours =
+                String(
+                    timeDate.getHours()
+                ).padStart(2, "0");
+
+            const minutes =
+                String(
+                    timeDate.getMinutes()
+                ).padStart(2, "0");
+
+
+            document.getElementById(
+                "attendanceTime"
+            ).value =
+                `${hours}:${minutes}`;
+
+        }
+
+    }
+
+
+    addAttendanceModal.style.display = "flex";
+
+});
+
+</script>
+
+{% endblock %}
+

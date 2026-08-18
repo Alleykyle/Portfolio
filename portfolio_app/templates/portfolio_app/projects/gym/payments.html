@@ -1,0 +1,697 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>💳 Payments</h1>
+
+        <p>Manage gym payments.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addPaymentBtn">
+
+        + Record Payment
+
+    </button>
+
+</div>
+
+<!-- Summary Cards -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">💰</div>
+
+        <div>
+
+            <h2>$3,250</h2>
+
+            <p>Monthly Revenue</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">✔</div>
+
+        <div>
+
+            <h2>42</h2>
+
+            <p>Paid</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">⏳</div>
+
+        <div>
+
+            <h2>8</h2>
+
+            <p>Pending</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">⚠</div>
+
+        <div>
+
+            <h2>3</h2>
+
+            <p>Overdue</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="paymentSearch"
+        placeholder="Search member...">
+
+</div>
+
+<div class="dashboard-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Member</th>
+<th>Plan</th>
+<th>Amount</th>
+<th>Date</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="paymentBody">
+
+<tr>
+
+<td>John Smith</td>
+
+<td>Premium</td>
+
+<td>$70</td>
+
+<td>2026-08-01</td>
+
+<td>
+
+<span class="status active">
+
+Paid
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn view-btn"
+
+data-name="John Smith"
+
+data-plan="Premium"
+
+data-amount="$70"
+
+data-date="2026-08-01"
+
+data-status="Paid">
+
+View
+
+</button>
+
+<button class="action-btn edit-btn">
+
+Edit
+
+</button>
+
+<button class="action-btn delete-btn">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Anna Cruz</td>
+
+<td>Standard</td>
+
+<td>$45</td>
+
+<td>2026-08-03</td>
+
+<td>
+
+<span class="status expired">
+
+Pending
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn view-btn"
+
+data-name="Anna Cruz"
+
+data-plan="Standard"
+
+data-amount="$45"
+
+data-date="2026-08-03"
+
+data-status="Pending">
+
+View
+
+</button>
+
+<button class="action-btn edit-btn">
+
+Edit
+
+</button>
+
+<button class="action-btn delete-btn">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<!-- ===========================
+ADD PAYMENT MODAL
+=========================== -->
+
+<div id="addPaymentModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeAddPayment">
+
+            &times;
+
+        </span>
+
+        <h2>Record Payment</h2>
+
+        <div class="form-group">
+
+            <label>Member Name</label>
+
+            <input
+                type="text"
+                id="paymentName">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Membership Plan</label>
+
+            <select id="paymentPlan">
+
+                <option>Basic</option>
+                <option>Standard</option>
+                <option>Premium</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Amount ($)</label>
+
+            <input
+                type="number"
+                id="paymentAmount">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Date</label>
+
+            <input
+                type="date"
+                id="paymentDate">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Status</label>
+
+            <select id="paymentStatus">
+
+                <option>Paid</option>
+                <option>Pending</option>
+                <option>Overdue</option>
+
+            </select>
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="savePayment">
+
+            Save Payment
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+VIEW PAYMENT MODAL
+=========================== -->
+
+<div id="paymentModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closePaymentModal">
+
+            &times;
+
+        </span>
+
+        <h2 id="modalMemberName">
+
+            John Smith
+
+        </h2>
+
+        <div class="info-row">
+
+            <strong>Membership</strong>
+
+            <span id="modalPlan">
+
+                Premium
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Amount</strong>
+
+            <span id="modalAmount">
+
+                $70
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Date</strong>
+
+            <span id="modalDate">
+
+                2026-08-01
+
+            </span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Status</strong>
+
+            <span
+                id="modalStatus"
+                class="status active">
+
+                Paid
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+// ===========================
+// SEARCH PAYMENT
+// ===========================
+
+const paymentSearch = document.getElementById("paymentSearch");
+
+if(paymentSearch){
+
+    paymentSearch.addEventListener("keyup", function(){
+
+        const filter = this.value.toLowerCase();
+
+        document.querySelectorAll("#paymentBody tr").forEach(function(row){
+
+            row.style.display =
+                row.innerText.toLowerCase().includes(filter)
+                ? ""
+                : "none";
+
+        });
+
+    });
+
+}
+
+// ===========================
+// ADD PAYMENT MODAL
+// ===========================
+
+const addPaymentBtn = document.getElementById("addPaymentBtn");
+const addPaymentModal = document.getElementById("addPaymentModal");
+const closeAddPayment = document.getElementById("closeAddPayment");
+
+let editingPayment = null;
+
+addPaymentBtn.onclick = function(){
+
+    editingPayment = null;
+
+    document.getElementById("paymentName").value = "";
+    document.getElementById("paymentPlan").selectedIndex = 0;
+    document.getElementById("paymentAmount").value = "";
+    document.getElementById("paymentDate").value = "";
+    document.getElementById("paymentStatus").selectedIndex = 0;
+
+    addPaymentModal.style.display = "flex";
+
+}
+
+closeAddPayment.onclick = function(){
+
+    addPaymentModal.style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === addPaymentModal){
+
+        addPaymentModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// SAVE PAYMENT
+// ===========================
+
+document.getElementById("savePayment").onclick = function(){
+
+    const name =
+    document.getElementById("paymentName").value.trim();
+
+    const plan =
+    document.getElementById("paymentPlan").value;
+
+    const amount =
+    document.getElementById("paymentAmount").value;
+
+    const date =
+    document.getElementById("paymentDate").value;
+
+    const status =
+    document.getElementById("paymentStatus").value;
+
+    if(name==="" || amount==="" || date===""){
+
+        alert("Please complete all fields.");
+
+        return;
+
+    }
+
+    const statusClass =
+        status === "Paid"
+        ? "active"
+        : "expired";
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+
+        <td>${name}</td>
+
+        <td>${plan}</td>
+
+        <td>$${amount}</td>
+
+        <td>${date}</td>
+
+        <td>
+
+            <span class="status ${statusClass}">
+
+                ${status}
+
+            </span>
+
+        </td>
+
+        <td>
+
+            <button
+
+                class="action-btn view-btn"
+
+                data-name="${name}"
+
+                data-plan="${plan}"
+
+                data-amount="$${amount}"
+
+                data-date="${date}"
+
+                data-status="${status}">
+
+                View
+
+            </button>
+
+            <button class="action-btn edit-btn">
+
+                Edit
+
+            </button>
+
+            <button class="action-btn delete-btn">
+
+                Delete
+
+            </button>
+
+        </td>
+
+    `;
+
+    if(editingPayment){
+
+        editingPayment.replaceWith(row);
+
+        editingPayment = null;
+
+    }
+
+    else{
+
+        document.getElementById("paymentBody").appendChild(row);
+
+    }
+
+    addPaymentModal.style.display = "none";
+
+};
+
+// ===========================
+// VIEW PAYMENT
+// ===========================
+
+const paymentModal =
+document.getElementById("paymentModal");
+
+const closePaymentModal =
+document.getElementById("closePaymentModal");
+
+document.addEventListener("click", function(e){
+
+    const btn =
+    e.target.closest(".view-btn");
+
+    if(!btn) return;
+
+    document.getElementById("modalMemberName").textContent =
+    btn.dataset.name;
+
+    document.getElementById("modalPlan").textContent =
+    btn.dataset.plan;
+
+    document.getElementById("modalAmount").textContent =
+    btn.dataset.amount;
+
+    document.getElementById("modalDate").textContent =
+    btn.dataset.date;
+
+    const modalStatus =
+    document.getElementById("modalStatus");
+
+    modalStatus.textContent =
+    btn.dataset.status;
+
+    modalStatus.className =
+        btn.dataset.status === "Paid"
+        ? "status active"
+        : "status expired";
+
+    paymentModal.style.display = "flex";
+
+});
+
+closePaymentModal.onclick = function(){
+
+    paymentModal.style.display = "none";
+
+}
+
+window.addEventListener("click", function(e){
+
+    if(e.target === paymentModal){
+
+        paymentModal.style.display = "none";
+
+    }
+
+});
+
+// ===========================
+// DELETE PAYMENT
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn =
+    e.target.closest(".delete-btn");
+
+    if(!btn) return;
+
+    if(confirm("Delete this payment?")){
+
+        btn.closest("tr").remove();
+
+    }
+
+});
+
+// ===========================
+// EDIT PAYMENT
+// ===========================
+
+document.addEventListener("click", function(e){
+
+    const btn =
+    e.target.closest(".edit-btn");
+
+    if(!btn) return;
+
+    editingPayment =
+    btn.closest("tr");
+
+    const viewBtn =
+    editingPayment.querySelector(".view-btn");
+
+    document.getElementById("paymentName").value =
+    viewBtn.dataset.name;
+
+    document.getElementById("paymentPlan").value =
+    viewBtn.dataset.plan;
+
+    document.getElementById("paymentAmount").value =
+    viewBtn.dataset.amount.replace("$","");
+
+    document.getElementById("paymentDate").value =
+    viewBtn.dataset.date;
+
+    document.getElementById("paymentStatus").value =
+    viewBtn.dataset.status;
+
+    addPaymentModal.style.display = "flex";
+
+});
+
+</script>
+
+{% endblock %}
+

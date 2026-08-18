@@ -1,0 +1,516 @@
+{% extends 'portfolio_app/gym_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>💳 Membership Plans</h1>
+
+        <p>Manage all membership plans.</p>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="addMembershipBtn">
+
+        + Add Membership
+
+    </button>
+
+</div>
+
+<div class="membership-grid" id="membershipGrid">
+
+    <!-- Basic -->
+
+    <div
+    class="membership-card"
+
+        data-name="Basic"
+
+        data-price="25"
+
+        data-duration="30 Days"
+
+        data-benefits="Gym Access,Locker,Free WiFi">
+
+        <h2>🥉 Basic</h2>
+
+        <div class="price">
+
+            $25
+
+            <span>/month</span>
+
+        </div>
+
+        <ul>
+
+            <li>✔ Gym Access</li>
+            <li>✔ Locker</li>
+            <li>✔ Free WiFi</li>
+
+        </ul>
+
+        <div class="card-actions">
+
+            <button class="action-btn view-btn">
+                View
+            </button>
+
+            <button class="action-btn edit-btn">
+                Edit
+            </button>
+
+            <button class="action-btn delete-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Standard -->
+
+    <div
+    class="membership-card"
+
+        data-name="Premium"
+
+        data-price="70"
+
+        data-duration="30 Days"
+
+        data-benefits="Unlimited Access,Personal Trainer,Nutrition Plan,VIP Locker">
+        <h2>🥈 Standard</h2>
+
+        <div class="price">
+
+            $45
+
+            <span>/month</span>
+
+        </div>
+
+        <ul>
+
+            <li>✔ Gym Access</li>
+            <li>✔ Group Classes</li>
+            <li>✔ Sauna</li>
+            <li>✔ Locker</li>
+
+        </ul>
+
+        <div class="card-actions">
+
+            <button class="action-btn view-btn">
+                View
+            </button>
+
+            <button class="action-btn edit-btn">
+                Edit
+            </button>
+
+            <button class="action-btn delete-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Premium -->
+
+    <div
+    class="membership-card"
+
+        data-name="Premium"
+
+        data-price="70"
+
+        data-duration="30 Days"
+
+        data-benefits="Unlimited Access,Personal Trainer,Nutrition Plan,VIP Locker">
+
+        <h2>🥇 Premium</h2>
+
+        <div class="price">
+
+            $70
+
+            <span>/month</span>
+
+        </div>
+
+        <ul>
+
+            <li>✔ Unlimited Access</li>
+            <li>✔ Personal Trainer</li>
+            <li>✔ Nutrition Plan</li>
+            <li>✔ VIP Locker</li>
+
+        </ul>
+
+        <div class="card-actions">
+
+            <button class="action-btn view-btn">
+                View
+            </button>
+
+            <button class="action-btn edit-btn">
+                Edit
+            </button>
+
+            <button class="action-btn delete-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+ADD MEMBERSHIP MODAL
+=========================== -->
+
+<div id="addMembershipModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeAddMembership">
+
+            &times;
+
+        </span>
+
+        <h2>Add Membership</h2>
+
+        <div class="form-group">
+
+            <label>Membership Name</label>
+
+            <input
+                type="text"
+                id="membershipName">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Monthly Price ($)</label>
+
+            <input
+                type="number"
+                id="membershipPrice">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Duration</label>
+
+            <select id="membershipDuration">
+
+                <option>30 Days</option>
+                <option>3 Months</option>
+                <option>6 Months</option>
+                <option>1 Year</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Benefits</label>
+
+            <textarea
+                id="membershipBenefits"
+                rows="5"
+                placeholder="One benefit per line"></textarea>
+
+        </div>
+
+        <button
+            class="new-btn"
+            id="saveMembership">
+
+            Save Membership
+
+        </button>
+
+    </div>
+
+</div>
+
+<div id="membershipModal" class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close-modal"
+            id="closeMembershipModal">
+
+            &times;
+
+        </span>
+
+        <h2 id="viewMembershipName"></h2>
+
+        <div class="info-row">
+
+            <strong>Price</strong>
+
+            <span id="viewMembershipPrice"></span>
+
+        </div>
+
+        <div class="info-row">
+
+            <strong>Duration</strong>
+
+            <span id="viewMembershipDuration"></span>
+
+        </div>
+
+        <h3>Benefits</h3>
+
+        <ul id="viewMembershipBenefits">
+
+        </ul>
+
+    </div>
+
+</div>
+
+<script>
+
+// ===========================
+// ADD MEMBERSHIP MODAL
+// ===========================
+
+const addMembershipBtn =
+document.getElementById("addMembershipBtn");
+
+const addMembershipModal =
+document.getElementById("addMembershipModal");
+
+const closeAddMembership =
+document.getElementById("closeAddMembership");
+
+if(addMembershipBtn){
+
+    addMembershipBtn.onclick=function(){
+
+        addMembershipModal.style.display="flex";
+
+    }
+
+}
+
+if(closeAddMembership){
+
+    closeAddMembership.onclick=function(){
+
+        addMembershipModal.style.display="none";
+
+    }
+
+}
+
+window.addEventListener("click",function(e){
+
+    if(e.target===addMembershipModal){
+
+        addMembershipModal.style.display="none";
+
+    }
+
+});
+
+// ===========================
+// SAVE MEMBERSHIP
+// ===========================
+
+const saveMembership =
+document.getElementById("saveMembership");
+
+const membershipGrid =
+document.getElementById("membershipGrid");
+
+let editingCard = null;
+
+if(saveMembership){
+
+    saveMembership.addEventListener("click",function(){
+
+        const name =
+        document.getElementById("membershipName").value.trim();
+
+        const price =
+        document.getElementById("membershipPrice").value.trim();
+
+        const duration =
+        document.getElementById("membershipDuration").value;
+
+        const benefits =
+        document.getElementById("membershipBenefits").value.trim();
+
+        if(name==="" || price===""){
+
+            alert("Please complete all required fields.");
+
+            return;
+
+        }
+
+        const icon =
+            name.toLowerCase().includes("premium") ? "🥇" :
+            name.toLowerCase().includes("standard") ? "🥈" :
+            "🥉";
+
+        const benefitList = benefits
+            .split("\n")
+            .filter(item => item.trim() !== "")
+            .map(item => `<li>✔ ${item}</li>`)
+            .join("");
+
+        const card = document.createElement("div");
+
+        card.className = "membership-card";
+
+        card.innerHTML = `
+
+            <h2>${icon} ${name}</h2>
+
+            <div class="price">
+
+                $${price}
+
+                <span>/${duration}</span>
+
+            </div>
+
+            <ul>
+
+                ${benefitList}
+
+            </ul>
+
+            <div class="card-actions">
+
+                <button class="action-btn view-btn">
+
+                    View
+
+                </button>
+
+                <button class="action-btn edit-btn">
+
+                    Edit
+
+                </button>
+
+                <button class="action-btn delete-btn">
+
+                    Delete
+
+                </button>
+
+            </div>
+
+        `;
+
+        if(editingCard){
+
+            editingCard.replaceWith(card);
+
+            editingCard = null;
+
+        }else{
+
+            membershipGrid.appendChild(card);
+
+        }
+
+        document.getElementById("membershipName").value = "";
+        document.getElementById("membershipPrice").value = "";
+        document.getElementById("membershipDuration").selectedIndex = 0;
+        document.getElementById("membershipBenefits").value = "";
+
+        addMembershipModal.style.display = "none";
+
+    });
+
+}
+
+// ===========================
+// VIEW MEMBERSHIP
+// ===========================
+
+const membershipModal =
+document.getElementById("membershipModal");
+
+const closeMembershipModal =
+document.getElementById("closeMembershipModal");
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".view-btn");
+
+    if(!btn) return;
+
+    // Get the membership card that contains the clicked button
+    const card = btn.closest(".membership-card");
+
+    document.getElementById("viewMembershipName").textContent =
+        card.dataset.name;
+
+    document.getElementById("viewMembershipPrice").textContent =
+        "$" + card.dataset.price + "/month";
+
+    document.getElementById("viewMembershipDuration").textContent =
+        card.dataset.duration;
+
+    const list =
+    document.getElementById("viewMembershipBenefits");
+
+    list.innerHTML = "";
+
+    card.dataset.benefits.split(",").forEach(function(item){
+
+        list.innerHTML += `<li>✔ ${item}</li>`;
+
+    });
+
+    membershipModal.style.display = "flex";
+
+});
+
+closeMembershipModal.onclick = function(){
+
+    membershipModal.style.display = "none";
+
+};
+
+window.addEventListener("click", function(e){
+
+    if(e.target === membershipModal){
+
+        membershipModal.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Smile CRM</title>
+
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/crm.css' %}">
+</head>
+
+<body>
+
+<div class="crm-layout">
+
+    {% include "portfolio_app/projects/partials/crm_sidebar.html" %}
+
+    <div class="crm-main">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+                <h2>🦷 Bright Smile CRM</h2>
+            </div>
+
+            <div class="topbar-right">
+                <button class="notification-btn">🔔</button>
+
+                <img src="{% static 'portfolio_app/images/profile-pic.png' %}"
+                     class="profile-pic"
+                     alt="Profile">
+            </div>
+
+        </header>
+
+        <main class="crm-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</div>
+
+<div id="toastContainer"></div>
+
+
+<script>
+const sidebar = document.querySelector(".crm-sidebar");
+
+if (sidebar) {
+    sidebar.scrollTop = sessionStorage.getItem("sidebarScroll") || 0;
+
+    sidebar.addEventListener("scroll", () => {
+        sessionStorage.setItem("sidebarScroll", sidebar.scrollTop);
+    });
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,475 @@
+{% extends 'portfolio_app/crm_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- =========================
+Dashboard Header
+========================= -->
+
+<div class="dashboard-header">
+
+    <div>
+
+        <span class="dashboard-badge">
+
+            👋 Welcome Back
+
+        </span>
+
+        <h1>
+
+            Bright Smile Dashboard
+
+        </h1>
+
+        <p>
+
+            Good Morning, Dr. Maria Santos.
+            Here's what's happening at your clinic today.
+
+        </p>
+
+        <div class="dashboard-meta">
+
+            <span>📅 July 28, 2026</span>
+
+            <span>🕘 Last Login: 8:43 AM</span>
+
+            <span>🟢 Clinic Status: Open</span>
+
+        </div>
+
+    </div>
+
+    <button
+        class="new-btn"
+        id="newAppointmentBtn">
+
+        + New Appointment
+
+    </button>
+
+</div>
+
+<!-- =========================
+Overview Cards
+========================= -->
+
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">👥</div>
+
+        <h3>Total Patients</h3>
+
+        <h2 class="counter" data-target="245">0</h2>
+
+        <span class="trend up">
+
+            +12 this month
+
+        </span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">📅</div>
+
+        <h3>Appointments Today</h3>
+
+        <h2 class="counter" data-target="58">0</h2>
+
+        <span class="trend up">
+
+            18 Remaining
+
+        </span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">💰</div>
+
+        <h3>Today's Revenue</h3>
+
+        <h2>
+
+            ₱<span
+                class="counter"
+                data-target="426300">
+
+                0
+
+            </span>
+
+        </h2>
+
+        <span class="trend up">
+
+            +8%
+
+        </span>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">⭐</div>
+
+        <h3>Patient Satisfaction</h3>
+
+        <h2>
+
+            <span
+                class="counter"
+                data-target="96">
+
+                0
+
+            </span>%
+
+        </h2>
+
+        <span class="trend up">
+
+            Excellent
+
+        </span>
+
+    </div>
+
+</div>
+
+<!-- =========================
+Today's Performance
+========================= -->
+
+<div class="dashboard-panel">
+
+    <div class="section-header">
+
+        <h2>📊 Today's Performance</h2>
+
+        <span class="status confirmed">
+
+            Live
+
+        </span>
+
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">🦷</div>
+
+            <h3>Treatments</h3>
+
+            <h2>24</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">📞</div>
+
+            <h3>New Inquiries</h3>
+
+            <h2>9</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">❌</div>
+
+            <h3>No Shows</h3>
+
+            <h2>2</h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <div class="card-icon">⭐</div>
+
+            <h3>Google Rating</h3>
+
+            <h2>4.9</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+Main Dashboard
+========================= -->
+
+<div class="dashboard-main">
+
+    <!-- Today's Appointments -->
+
+    <div class="dashboard-panel">
+
+        <h2>📅 Today's Appointments</h2>
+
+        <table class="patient-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Patient</th>
+
+                    <th>Dentist</th>
+
+                    <th>Time</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>John Cruz</td>
+
+                    <td>Dr. Santos</td>
+
+                    <td>9:00 AM</td>
+
+                    <td>
+                        <span class="status confirmed">
+
+                            Confirmed
+
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Maria Santos</td>
+
+                    <td>Dr. Garcia</td>
+
+                    <td>10:30 AM</td>
+
+                    <td>
+                        <span class="status pending">
+
+                            Pending
+
+                        </span>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Carlos Reyes</td>
+
+                    <td>Dr. Santos</td>
+
+                    <td>1:00 PM</td>
+
+                    <td>
+                        <span class="status confirmed">
+
+                            Confirmed
+
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="dashboard-panel">
+
+        <h2>⚡ Quick Actions</h2>
+
+        <div class="quick-actions">
+
+            <button class="quick-btn">
+
+                ➕ Add Patient
+
+            </button>
+
+            <button class="quick-btn">
+
+                📅 New Appointment
+
+            </button>
+
+            <button class="quick-btn">
+
+                📧 Send Email
+
+            </button>
+
+            <button class="quick-btn">
+
+                🤖 New Workflow
+
+            </button>
+
+            <button class="quick-btn">
+
+                📈 Reports
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+Recent Activity
+========================= -->
+
+<div class="dashboard-panel">
+
+    <h2>🕒 Recent Activity</h2>
+
+    <div class="activity-list">
+
+        <div class="activity-item">
+
+            <strong>📅 John Cruz</strong>
+
+            <p>Confirmed today's Dental Cleaning appointment.</p>
+
+            <small>2 minutes ago</small>
+
+        </div>
+
+        <div class="activity-item">
+
+            <strong>📧 Email Campaign</strong>
+
+            <p>Cleaning Reminder sent to 250 patients.</p>
+
+            <small>10 minutes ago</small>
+
+        </div>
+
+        <div class="activity-item">
+
+            <strong>💳 Payment Received</strong>
+
+            <p>Carlos Reyes paid ₱2,500.</p>
+
+            <small>25 minutes ago</small>
+
+        </div>
+
+        <div class="activity-item">
+
+            <strong>👤 New Patient</strong>
+
+            <p>Anna Lopez registered today.</p>
+
+            <small>1 hour ago</small>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+Bottom Dashboard
+========================= -->
+
+<div class="dashboard-bottom">
+
+    <div class="dashboard-panel">
+
+        <h2>📈 Revenue Analytics</h2>
+
+        <div class="chart-container">
+
+            <canvas id="revenueChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard-panel">
+
+        <h2>📅 Upcoming Appointments</h2>
+
+        <div class="appointment-item">
+
+            <strong>John Cruz</strong>
+
+            <span>9:00 AM • Cleaning</span>
+
+        </div>
+
+        <div class="appointment-item">
+
+            <strong>Maria Santos</strong>
+
+            <span>10:30 AM • Braces</span>
+
+        </div>
+
+        <div class="appointment-item">
+
+            <strong>Carlos Reyes</strong>
+
+            <span>1:00 PM • Whitening</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+Recent Patients
+========================= -->
+
+<div class="dashboard-panel">
+
+    <h2>👥 Recent Patients</h2>
+
+    <div class="patient-item">Anna Lopez</div>
+
+    <div class="patient-item">Miguel Santos</div>
+
+    <div class="patient-item">Rose Garcia</div>
+
+    <div class="patient-item">Kevin Cruz</div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static 'portfolio_app/js/dashboard.js' %}"></script>
+
+{% endblock %}

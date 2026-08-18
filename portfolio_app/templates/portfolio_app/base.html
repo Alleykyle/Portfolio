@@ -1,30 +1,51 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Alley Kyle Regala Portfolio</title>
+    <title>{% block title %}Alley Kyle Regala Portfolio{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'portfolio_app/css/style.css' %}">
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <!-- Your navbar goes here -->
-    </nav>
+    <!-- Navigation -->
+    <header class="navbar">
 
+        <div class="logo">
+            <a href="{% url 'home' %}">Alley Kyle Regala</a>
+        </div>
+
+        <nav>
+
+            <ul class="nav-menu">
+
+                <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li><a href="{% url 'home' %}#about">About</a></li>
+
+                <li><a href="{% url 'home' %}#projects">Projects</a></li>
+
+                <li><a href="{% url 'home' %}#contact">Contact</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- Page Content -->
     {% block content %}
     {% endblock %}
 
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Alley Kyle Regala. All Rights Reserved.</p>
+
+        <p>© 2026 Alley Kyle Regala. All Rights Reserved.</p>
+
     </footer>
 
 </body>
-
 </html>

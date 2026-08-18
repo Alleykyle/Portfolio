@@ -1,0 +1,339 @@
+{% extends 'portfolio_app/crm_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+        <h1>💬 Conversations</h1>
+        <p>Manage patient communications.</p>
+    </div>
+
+</div>
+
+<div class="chat-layout">
+
+    <!-- =========================
+         Left Sidebar
+    ========================== -->
+
+    <div class="chat-sidebar">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="conversationSearch"
+                placeholder="🔍 Search patient...">
+
+        </div>
+
+       <div class="conversation-list">
+
+            <div class="conversation-card active"
+                data-name="John Cruz"
+                data-avatar="JC"
+                data-status="🟢 Online">
+
+                <div class="patient-avatar">
+                    JC
+                </div>
+
+                <div class="conversation-info">
+
+                    <div class="conversation-header">
+
+                        <h3>John Cruz</h3>
+
+                        <span class="conversation-time">
+                            2 min
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Hi! I'd like to confirm my cleaning appointment.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="conversation-card"
+                data-name="Maria Santos"
+                data-avatar="MS"
+                data-status="🟡 Away">
+
+                <div class="patient-avatar">
+                    MS
+                </div>
+
+                <div class="conversation-info">
+
+                    <div class="conversation-header">
+
+                        <h3>Maria Santos</h3>
+
+                        <span class="conversation-time">
+                            15 min
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Can I reschedule my braces adjustment?
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="conversation-card"
+                data-name="Carlos Reyes"
+                data-avatar="CR"
+                data-status="⚪ Offline">
+
+                <div class="patient-avatar">
+                    CR
+                </div>
+
+                <div class="conversation-info">
+
+                    <div class="conversation-header">
+
+                        <h3>Carlos Reyes</h3>
+
+                        <span class="conversation-time">
+                            1 hr
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Thank you for the reminder!
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         Chat Window
+    ========================== -->
+
+    <div class="chat-window">
+
+        <div class="chat-header">
+
+            <div class="patient-avatar large" id="chatAvatar">
+
+                JC
+
+            </div>
+
+            <div>
+
+                <h2 id="chatName">John Cruz</h2>
+
+                <small id="chatStatus">🟢 Online</small>
+
+            </div>
+
+        </div>
+
+        <div class="chat-body" id="chatBody">
+
+            <div class="message received">
+
+                Good morning! I'd like to confirm my cleaning appointment tomorrow.
+
+            </div>
+
+            <div class="message sent">
+
+                Good morning John! Your appointment is confirmed for 9:00 AM.
+
+            </div>
+
+            <div class="message received">
+
+                Thank you so much!
+
+            </div>
+
+        </div>
+
+        <div class="chat-footer">
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Type your message...">
+
+            <button
+                class="new-btn"
+                id="sendMessage">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+
+const conversationsData = {
+
+    "John Cruz": {
+
+        avatar: "JC",
+
+        status: "🟢 Online",
+
+        messages: [
+
+            {
+                type: "received",
+                text: "Good morning! I'd like to confirm my cleaning appointment tomorrow."
+            },
+
+            {
+                type: "sent",
+                text: "Good morning John! Your appointment is confirmed for 9:00 AM."
+            },
+
+            {
+                type: "received",
+                text: "Thank you so much!"
+            }
+
+        ]
+
+    },
+
+    "Maria Santos": {
+
+        avatar: "MS",
+
+        status: "🟡 Away",
+
+        messages: [
+
+            {
+                type: "received",
+                text: "Hello Doctor! Can I move my appointment to Friday?"
+            },
+
+            {
+                type: "sent",
+                text: "Yes Maria, Friday at 2:00 PM is available."
+            },
+
+            {
+                type: "received",
+                text: "Perfect! Thank you!"
+            }
+
+        ]
+
+    },
+
+    "Carlos Reyes": {
+
+        avatar: "CR",
+
+        status: "⚪ Offline",
+
+        messages: [
+
+            {
+                type: "received",
+                text: "Thank you for yesterday's reminder."
+            },
+
+            {
+                type: "sent",
+                text: "You're welcome Carlos."
+            },
+
+            {
+                type: "received",
+                text: "See you next week."
+            }
+
+        ]
+
+    }
+
+};
+
+const conversations =
+document.querySelectorAll(".conversation-card");
+
+const chatName =
+document.getElementById("chatName");
+
+const chatAvatar =
+document.getElementById("chatAvatar");
+
+const chatStatus =
+document.getElementById("chatStatus");
+
+const chatBody =
+document.getElementById("chatBody");
+
+conversations.forEach(card => {
+
+    card.addEventListener("click", function(){
+
+        // Remove active class
+        conversations.forEach(c =>
+            c.classList.remove("active")
+        );
+
+        this.classList.add("active");
+
+        const person =
+            conversationsData[this.dataset.name];
+
+        // Update header
+        chatName.textContent =
+            this.dataset.name;
+
+        chatAvatar.textContent =
+            person.avatar;
+
+        chatStatus.textContent =
+            person.status;
+
+        // Build chat messages
+        let html = "";
+
+        person.messages.forEach(message => {
+
+            html += `
+                <div class="message ${message.type}">
+                    ${message.text}
+                </div>
+            `;
+
+        });
+
+        chatBody.innerHTML = html;
+
+    });
+
+});
+</script>
+
+{% endblock %}

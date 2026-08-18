@@ -1,0 +1,56 @@
+<div class="gym-sidebar">
+
+    <div class="logo">
+        🏋 FitCore
+    </div>
+
+    <nav>
+
+        <a href="{% url 'gym_dashboard' %}"
+           class="{% if request.resolver_match.url_name == 'gym_dashboard' %}active{% endif %}">
+            🏠 Dashboard
+        </a>
+
+        <a href="{% url 'gym_members' %}"
+           class="{% if request.resolver_match.url_name == 'gym_members' %}active{% endif %}">
+            👥 Members
+        </a>
+
+        <a href="{% url 'gym_trainers' %}"
+           class="{% if request.resolver_match.url_name == 'gym_trainers' %}active{% endif %}">
+            🏋 Trainers
+        </a>
+
+        <a href="{% url 'gym_memberships' %}"
+           class="{% if request.resolver_match.url_name == 'gym_memberships' %}active{% endif %}">
+            💳 Memberships
+        </a>
+
+        <a href="{% url 'gym_schedule' %}"
+           class="{% if request.resolver_match.url_name == 'gym_schedule' %}active{% endif %}">
+            📅 Schedule
+        </a>
+
+        <a href="{% url 'gym_payments' %}"
+           class="{% if request.resolver_match.url_name == 'gym_payments' %}active{% endif %}">
+            💰 Payments
+        </a>
+
+        <a href="{% url 'gym_reports' %}"
+           class="{% if request.resolver_match.url_name == 'gym_reports' %}active{% endif %}">
+            📊 Reports
+        </a>
+
+        <a href="{% url 'gym_attendance' %}"
+           class="{% if request.resolver_match.url_name == 'gym_attendance' %}active{% endif %}">
+            📋 Attendance
+        </a>
+
+        <a href="{% url 'gym_settings' %}"
+           class="{% if request.resolver_match.url_name == 'gym_settings' %}active{% endif %}">
+            ⚙ Settings
+        </a>
+
+    </nav>
+
+</div>

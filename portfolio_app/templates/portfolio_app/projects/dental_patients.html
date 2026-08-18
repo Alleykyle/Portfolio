@@ -1,68 +1,552 @@
-{% extends 'portfolio_app/base.html' %}
-{% load static %}
+{% extends 'portfolio_app/crm_base.html' %}
 
 {% block content %}
 
-<h1 style="padding:40px;">👥 Patients</h1>
+<!-- Header -->
+<div class="dashboard-header">
 
-<div class="table-container">
+    <div>
 
-    <table class="patient-table">
+        <h1>👥 Patients</h1>
 
-        <thead>
+        <p>Manage all clinic patients.</p>
 
-            <tr>
+    </div>
 
-                <th>Name</th>
+    <button
+        class="new-btn"
+        id="addPatientBtn">
 
-                <th>Service</th>
+        + Add Patient
 
-                <th>Appointment</th>
-
-                <th>Status</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            <tr>
-
-                <td>John Cruz</td>
-
-                <td>Cleaning</td>
-
-                <td>July 15</td>
-
-                <td>
-                    <span class="status confirmed">
-                        Confirmed
-                    </span>
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td>Maria Santos</td>
-
-                <td>Braces</td>
-
-                <td>July 18</td>
-
-                <td>
-                    <span class="status pending">
-                        Pending
-                    </span>
-                </td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
+    </button>
 
 </div>
+
+<!-- Patient Modal -->
+<div id="patientModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-modal">&times;</span>
+
+        <div class="modal-header">
+
+            <div class="modal-avatar" id="modalAvatar">
+                JC
+            </div>
+
+            <div>
+
+                <h2 id="modalName">
+                    John Cruz
+                </h2>
+
+                <p>
+                    Patient ID #
+                    <span id="modalId">1001</span>
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div class="info-row">
+
+                <strong>Phone</strong>
+
+                <span id="modalPhone">
+                    0917-123-4567
+                </span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Email</strong>
+
+                <span id="modalEmail">
+                    john@email.com
+                </span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Service</strong>
+
+                <span id="modalService">
+                    Cleaning
+                </span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Last Visit</strong>
+
+                <span id="modalVisit">
+                    July 15, 2026
+                </span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Status</strong>
+
+                <span id="modalStatus" class="status confirmed">
+                    Confirmed
+                </span>
+
+            </div>
+
+            <hr>
+
+            <h3>📅 Upcoming Appointment</h3>
+
+            <div class="info-row">
+
+                <strong>Date</strong>
+
+                <span id="modalAppointment">
+                    July 30, 2026
+                </span>
+
+            </div>
+
+            <div class="info-row">
+
+                <strong>Dentist</strong>
+
+                <span id="modalDentist">
+                    Dr. Santos
+                </span>
+
+            </div>
+
+            <hr>
+
+            <h3>🦷 Treatment History</h3>
+
+            <ul class="treatment-list" id="modalHistory">
+
+                <li>✔ Dental Consultation</li>
+
+                <li>✔ Teeth Cleaning</li>
+
+                <li>✔ Dental X-Ray</li>
+
+            </ul>
+
+            <div class="modal-actions">
+
+                <button class="action-btn">
+                    ✏ Edit Patient
+                </button>
+
+                <button class="new-btn">
+                    📅 Schedule Appointment
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Add Patient Modal -->
+<div id="addPatientModal" class="patient-modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeAddModal">&times;</span>
+        <div class="modal-header">
+            <h2>+ Add New Patient</h2>
+        </div>
+        <div class="modal-body">
+            <form id="addPatientForm">
+                {% csrf_token %}
+                <div class="info-row">
+                    <label for="newName">Full Name</label>
+                    <input type="text" id="newName" name="name" required>
+                </div>
+                <div class="info-row">
+                    <label for="newPhone">Phone</label>
+                    <input type="text" id="newPhone" name="phone" required>
+                </div>
+                <div class="info-row">
+                    <label for="newEmail">Email</label>
+                    <input type="email" id="newEmail" name="email">
+                </div>
+                <div class="info-row">
+                    <label for="newService">Service</label>
+                    <select id="newService" name="service">
+                        <option>Cleaning</option>
+                        <option>Braces</option>
+                        <option>Whitening</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="new-btn">Save Patient</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Patient Summary -->
+<div class="dashboard-grid">
+
+    <div class="dashboard-card">
+        <div class="card-icon">👥</div>
+        <h3>Total Patients</h3>
+        <h2>245</h2>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="card-icon">🟢</div>
+        <h3>Active Patients</h3>
+        <h2>201</h2>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="card-icon">🆕</div>
+        <h3>New This Month</h3>
+        <h2>18</h2>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="card-icon">📅</div>
+        <h3>Appointments Today</h3>
+        <h2>24</h2>
+    </div>
+
+</div>
+
+<!-- Toolbar -->
+<div class="project-container">
+
+    <div class="table-toolbar">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="patientSearch"
+                placeholder="🔍 Search patient...">
+
+        </div>
+
+        <div class="table-filters">
+
+            <select>
+                <option>All Status</option>
+                <option>Confirmed</option>
+                <option>Pending</option>
+            </select>
+
+            <select>
+                <option>All Services</option>
+                <option>Cleaning</option>
+                <option>Braces</option>
+                <option>Whitening</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+    <div class="table-container">
+
+        <table class="patient-table" id="patientTable">
+
+            <thead>
+
+                <tr>
+
+                    <th>Patient</th>
+                    <th>Phone</th>
+                    <th>Last Visit</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="patientBody">
+
+                <tr>
+
+                    <td class="patient-info">
+
+                        <div class="patient-avatar">JC</div>
+
+                        <div>
+
+                            <strong>John Cruz</strong><br>
+
+                            <small>ID #1001</small>
+
+                        </div>
+
+                    </td>
+
+                    <td>0917-123-4567</td>
+
+                    <td>July 15, 2026</td>
+
+                    <td>Cleaning</td>
+
+                    <td>
+
+                        <span class="status confirmed">
+                            Confirmed
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                       <button
+                            class="action-btn view-btn"
+                            data-name="John Cruz"
+                            data-id="1001"
+                            data-phone="0917-123-4567"
+                            data-email="john@email.com"
+                            data-service="Cleaning"
+                            data-visit="July 15, 2026"
+                            data-status="confirmed"
+                            data-avatar="JC">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="patient-info">
+
+                        <div class="patient-avatar">MS</div>
+
+                        <div>
+
+                            <strong>Maria Santos</strong><br>
+
+                            <small>ID #1002</small>
+
+                        </div>
+
+                    </td>
+
+                    <td>0918-555-1234</td>
+
+                    <td>July 18, 2026</td>
+
+                    <td>Braces</td>
+
+                    <td>
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-btn view-btn"
+                            data-name="Maria Santos"
+                            data-id="1002"
+                            data-phone="0918-555-1234"
+                            data-email="maria@email.com"
+                            data-service="Braces"
+                            data-visit="July 18, 2026"
+                            data-status="pending"
+                            data-avatar="MS">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="patient-info">
+
+                        <div class="patient-avatar">CR</div>
+
+                        <div>
+
+                            <strong>Carlos Reyes</strong><br>
+
+                            <small>ID #1003</small>
+
+                        </div>
+
+                    </td>
+
+                    <td>0921-888-1111</td>
+
+                    <td>July 20, 2026</td>
+
+                    <td>Whitening</td>
+
+                    <td>
+
+                        <span class="status confirmed">
+                            Confirmed
+                        </span>
+
+                    </td>
+
+                    <td>
+                        <button
+                            class="action-btn view-btn"
+                            data-name="Carlos Reyes"
+                            data-id="1003"
+                            data-phone="0921-888-1111"
+                            data-email="carlos@email.com"
+                            data-service="Whitening"
+                            data-visit="July 20, 2026"
+                            data-status="confirmed"
+                            data-avatar="CR">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+
+console.log("START");
+
+// =========================
+// Patient Search
+// =========================
+
+const searchInput = document.getElementById("patientSearch");
+
+if (searchInput) {
+
+    searchInput.addEventListener("keyup", function () {
+
+        const filter = this.value.toLowerCase();
+
+        const rows = document.querySelectorAll("#patientBody tr");
+
+        rows.forEach(function (row) {
+
+            const text = row.innerText.toLowerCase();
+
+            row.style.display = text.includes(filter) ? "" : "none";
+
+        });
+
+    });
+
+}
+
+
+// =========================
+// Patient Modal
+// =========================
+
+const modal = document.getElementById("patientModal");
+const closeModal = document.querySelector(".close-modal");
+
+document.addEventListener("click", function(e){
+
+    const btn = e.target.closest(".view-btn");
+
+    if(!btn) return;
+
+    document.getElementById("modalAvatar").textContent = btn.dataset.avatar;
+    document.getElementById("modalName").textContent = btn.dataset.name;
+    document.getElementById("modalId").textContent = btn.dataset.id;
+    document.getElementById("modalPhone").textContent = btn.dataset.phone;
+    document.getElementById("modalEmail").textContent = btn.dataset.email;
+    document.getElementById("modalService").textContent = btn.dataset.service;
+    document.getElementById("modalVisit").textContent = btn.dataset.visit;
+
+    const status = document.getElementById("modalStatus");
+
+    status.textContent = btn.dataset.status;
+    status.className = "status " + btn.dataset.status;
+
+    document.getElementById("patientModal").style.display = "flex";
+
+});
+
+if (closeModal) {
+
+    closeModal.addEventListener("click", function () {
+
+        modal.style.display = "none";
+
+    });
+
+}
+
+window.addEventListener("click", function (e) {
+
+    if (e.target === modal) {
+
+        modal.style.display = "none";
+
+    }
+
+});
+
+// =========================
+// Add Patient Modal
+// =========================
+
+const addPatientBtn = document.getElementById("addPatientBtn");
+const addPatientModal = document.getElementById("addPatientModal");
+const closeAddModal = document.getElementById("closeAddModal");
+
+if (addPatientBtn && addPatientModal) {
+
+    addPatientBtn.addEventListener("click", function () {
+
+        addPatientModal.classList.add("active");
+
+    });
+
+    closeAddModal.addEventListener("click", function () {
+
+        addPatientModal.classList.remove("active");
+
+    });
+
+    window.addEventListener("click", function (event) {
+
+        if (event.target === addPatientModal) {
+
+            addPatientModal.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+</script>
 
 {% endblock %}
