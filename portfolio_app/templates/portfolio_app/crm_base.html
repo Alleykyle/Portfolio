@@ -35,8 +35,29 @@
         </header>
 
         <main class="crm-content">
+
+            <div class="demo-navigation">
+
+                <button
+                    type="button"
+                    class="demo-back-btn"
+                    onclick="history.back()"
+                >
+                    ← Back
+                </button>
+
+                <a
+                    href="{% url 'home' %}#projects"
+                    class="demo-home-btn"
+                >
+                    🏠 Home
+                </a>
+
+            </div>
+
             {% block content %}
             {% endblock %}
+
         </main>
 
     </div>

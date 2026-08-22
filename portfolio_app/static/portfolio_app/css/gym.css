@@ -276,6 +276,8 @@ body{
     margin-bottom:20px;
 }
 
+
+
 .class-item{
     display:flex;
     justify-content:space-between;
@@ -286,6 +288,15 @@ body{
 /* ===========================
    TABLE
 =========================== */
+
+.table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+.table-scroll table{
+    min-width:520px;
+}
 
 table{
     width:100%;
@@ -1413,6 +1424,22 @@ textarea{
         max-width:100%;
     }
 
+        .dashboard-card table{
+        table-layout:auto;
+        word-break:normal;
+        overflow-wrap:normal;
+    }
+
+    .dashboard-card th,
+    .dashboard-card td{
+        white-space:nowrap;
+    }
+
+    .status{
+        white-space:nowrap;
+        display:inline-block;
+    }
+
 }
 
 
@@ -1515,6 +1542,72 @@ textarea{
 
 }
 
+/* =========================================================
+   DEMO PROJECT NAVIGATION
+========================================================= */
+
+.demo-navigation{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.demo-navigation button,
+.demo-navigation a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:40px;
+    padding:9px 16px;
+
+    border-radius:8px;
+
+    font-size:14px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.demo-back-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+}
+
+.demo-home-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+}
+
+.demo-navigation button:hover,
+.demo-navigation a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
 
 
+@media (max-width:480px){
 
+    .demo-navigation{
+        gap:8px;
+        margin-bottom:15px;
+    }
+
+    .demo-navigation button,
+    .demo-navigation a{
+        min-height:38px;
+        padding:8px 12px;
+        font-size:13px;
+    }
+
+}

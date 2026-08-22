@@ -891,6 +891,71 @@ body{
 
 }
 
+.settings-card{
+    background:#fff;
+    border-radius:16px;
+    padding:35px;
+    box-shadow:var(--shadow);
+    margin-bottom:25px;
+}
+
+.settings-card h2{
+    margin-bottom:20px;
+}
+
+.settings-check{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.settings-check label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+}
+
+.security-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.staff-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.staff-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+}
+
+.staff-item p{
+    color:var(--text-light);
+    font-size:14px;
+    margin-top:4px;
+}
+
+.settings-container .save-btn{
+    width:100%;
+    padding:16px;
+    font-size:16px;
+    margin-top:10px;
+}
 
 
 
@@ -2006,6 +2071,147 @@ background:#fff;
 
 }
 
+@media (max-width:768px){
+    .crm-layout{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        min-height:100vh;
+    }
+
+    .crm-sidebar{
+        position:relative;
+        top:auto;
+        width:100%;
+        height:auto;
+        max-height:none;
+        padding:18px;
+        overflow-y:visible;
+    }
+
+    .crm-sidebar h2{
+        font-size:22px;
+        margin-bottom:15px;
+    }
+
+    .crm-sidebar ul{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:8px;
+    }
+
+    .crm-sidebar a{
+        padding:12px 10px;
+        font-size:14px;
+        text-align:center;
+    }
+
+    .crm-main{
+        width:100%;
+        min-width:0;
+    }
+
+    .crm-content{
+        width:100%;
+        padding:20px;
+    }
+
+        .crm-sidebar a,
+    .sidebar-menu a{
+        white-space:normal;
+        flex-direction:column;
+        text-align:center;
+        gap:6px;
+        padding:12px 8px;
+        font-size:13px;
+    }
+
+    .sidebar-menu span{
+        font-size:20px;
+    }
+
+        .patient-table thead{
+        display:none;
+    }
+
+    .patient-table,
+    .patient-table tbody,
+    .patient-table tr,
+    .patient-table td{
+        display:block;
+        width:100%;
+    }
+
+    .patient-table tr{
+        margin-bottom:15px;
+        border-radius:12px;
+        border:1px solid #e5e7eb;
+        padding:10px 15px;
+        box-shadow:var(--shadow);
+    }
+
+    .patient-table td{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:10px 0;
+        border-bottom:1px solid #f1f5f9;
+        text-align:right;
+    }
+
+    .patient-table td:last-child{
+        border-bottom:none;
+    }
+
+    .patient-table td::before{
+        content:attr(data-label);
+        font-weight:600;
+        color:var(--text-light);
+        text-align:left;
+    }
+
+        .calendar-layout{
+        grid-template-columns:1fr;
+        gap:20px;
+    }
+
+    .calendar-panel,
+    .schedule-panel{
+        padding:18px;
+    }
+
+    .calendar-header h2{
+        font-size:18px;
+    }
+
+    .calendar-btn{
+        width:34px;
+        height:34px;
+        font-size:15px;
+    }
+
+    .calendar-days,
+    .calendar-dates{
+        gap:6px;
+    }
+
+    .calendar-days div{
+        font-size:12px;
+    }
+
+    .date{
+        height:42px;
+        border-radius:10px;
+        font-size:13px;
+    }
+
+    .dot{
+        width:5px;
+        height:5px;
+        margin-top:2px;
+    }
+}
+
 
 /* =========================
    SMALL PHONES
@@ -2102,5 +2308,233 @@ background:#fff;
         max-height:220px !important;
     }
 
+        .chat-layout{
+        grid-template-columns:1fr;
+        height:auto;
+        gap:15px;
+    }
+
+    .chat-sidebar{
+        max-height:280px;
+    }
+
+    .chat-window{
+        height:500px;
+    }
+
+    .chat-header{
+        padding:15px;
+    }
+
+    .patient-avatar.large{
+        width:45px;
+        height:45px;
+        min-width:45px;
+        font-size:16px;
+    }
+
+    .message{
+        max-width:85%;
+        font-size:14px;
+    }
+
+    .chat-footer{
+        padding:15px;
+        gap:10px;
+    }
+
+    .chat-footer input{
+        font-size:14px;
+    }
+
+    .chat-footer .new-btn{
+        padding:12px 18px;
+        white-space:nowrap;
+    }
+
+        .workflow-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:20px;
+    }
+
+    .workflow-card{
+        padding:22px;
+    }
+
+    .workflow-icon{
+        width:55px;
+        height:55px;
+        font-size:26px;
+        margin-bottom:18px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .workflow-actions{
+        margin-top:15px;
+    }
+
+    .workflow-actions .action-btn{
+        width:100%;
+    }
+
+    .modal-footer{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .modal-footer button{
+        width:100%;
+    }
+
+        .reports-chart-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .report-card canvas{
+        height:220px !important;
+    }
+
+    .campaign-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:20px;
+    }
+
+    .campaign-card{
+        padding:22px;
+    }
+
+    .campaign-header{
+        flex-wrap:wrap;
+        gap:8px;
+    }
+
+    .campaign-header h3{
+        font-size:16px;
+    }
+
+    .campaign-footer{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .campaign-footer .action-btn{
+        width:100%;
+    }
+
+        .reports-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        padding:20px;
+    }
+
+    .report-card{
+        padding:22px;
+    }
+
+    .report-card h2{
+        font-size:28px;
+    }
+
+        .settings-container{
+        margin:20px auto;
+        padding:0 15px;
+    }
+
+    .settings-card{
+        padding:20px;
+    }
+
+    .security-actions{
+        flex-direction:column;
+    }
+
+    .security-actions .action-btn{
+        width:100%;
+    }
+
+    .section-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .section-header .new-btn{
+        width:100%;
+    }
+
+    .staff-item{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .staff-item .action-btn{
+        width:100%;
+    }
+
 }
 
+/* =========================================================
+   DEMO NAVIGATION
+========================================================= */
+
+.demo-navigation{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.demo-navigation button,
+.demo-navigation a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:40px;
+    padding:9px 16px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .2s ease,
+               background .2s ease,
+               box-shadow .2s ease;
+}
+
+.demo-back-btn,
+.demo-home-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+}
+
+.demo-navigation button:hover,
+.demo-navigation a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+@media (max-width:480px){
+
+    .demo-navigation{
+        gap:8px;
+        margin-bottom:15px;
+    }
+
+    .demo-navigation button,
+    .demo-navigation a{
+        min-height:38px;
+        padding:8px 12px;
+        font-size:13px;
+    }
+
+}
