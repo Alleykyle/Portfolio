@@ -1,0 +1,1613 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    color:#1d3557;
+}
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+.gym-layout{
+    display:flex;
+    min-height:100vh;
+}
+
+.gym-main{
+    flex:1;
+    margin-left:260px;
+}
+
+.gym-content{
+    padding:30px;
+}
+
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.gym-sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+
+    width:260px;
+    height:100vh;
+
+    background:#1d3557;
+    color:#fff;
+
+    padding:25px;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    z-index:1000;
+
+    scrollbar-width:thin;
+}
+
+
+/* LOGO */
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+
+    margin-bottom:40px;
+
+    white-space:nowrap;
+}
+
+
+/* NAVIGATION */
+
+.gym-sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    width:100%;
+
+}
+
+
+/* LINKS */
+
+.gym-sidebar nav a{
+
+    display:block;
+
+    width:100%;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    transition:.3s;
+
+    white-space:nowrap;
+
+}
+
+
+/* HOVER */
+
+.gym-sidebar nav a:hover{
+
+    background:#e63946;
+
+    color:#fff;
+
+    transform:translateX(3px);
+
+}
+
+
+/* ACTIVE */
+
+.gym-sidebar nav a.active{
+
+    background:#e63946;
+
+    color:#fff;
+
+    font-weight:600;
+
+    box-shadow:0 8px 18px rgba(230,57,70,.35);
+
+}
+
+/* ===========================
+   TOPBAR
+=========================== */
+
+.topbar{
+    background:#fff;
+    padding:20px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.topbar-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.notification-btn{
+    background:#fff;
+    border:none;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.profile-pic{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.dashboard-header h1{
+    font-size:34px;
+    margin-bottom:5px;
+}
+
+.dashboard-header p{
+    color:#777;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.new-btn{
+    background:#e63946;
+    color:#fff;
+    border:none;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.new-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ===========================
+   STAT CARDS
+=========================== */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.stat-card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.stat-icon{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#e63946;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+
+.stat-card h2{
+    font-size:28px;
+}
+
+.stat-card p{
+    color:#777;
+}
+
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.dashboard-card{
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    
+}
+
+
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+
+
+.class-item{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+.table-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+.table-scroll table{
+    min-width:520px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:15px;
+    background:#f8f9fa;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.status{
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.active{
+    background:#d1fae5;
+    color:#059669;
+}
+
+.expired{
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+
+
+
+/* ===========================
+   MEMBERS CSS
+=========================== */
+
+.search-box{
+
+    margin-bottom:25px;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    font-size:15px;
+
+}
+
+.member-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.member-avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:#e63946;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+}
+
+.action-btn{
+
+    background:#1d3557;
+    color:#fff;
+
+    border:none;
+
+    padding:10px 16px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:14px;
+    font-weight:600;
+
+    white-space:nowrap;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:70px;
+
+}
+
+.action-btn:hover{
+
+    background:#e63946;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   ACTIONS COLUMN
+=========================== */
+
+td:last-child{
+
+    white-space:nowrap;
+
+    min-width:250px;
+
+}
+
+
+/* Space between buttons */
+
+td:last-child .action-btn{
+
+    margin-right:6px;
+
+}
+
+td:last-child .action-btn:last-child{
+
+    margin-right:0;
+
+}
+
+.gym-sidebar nav a.active{
+
+    background:#e63946;
+
+    color:#fff;
+
+    font-weight:600;
+
+    box-shadow:0 8px 18px rgba(230,57,70,.35);
+
+}
+
+.gym-sidebar nav a:hover{
+
+    background:#e63946;
+
+    color:#fff;
+
+}
+
+
+/* ===========================
+   ADD MEMBERS CSS
+=========================== */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+}
+
+.form-group input,
+.form-group select{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+}
+
+
+/* ===========================
+   MODAL
+=========================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.55);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.modal-content{
+
+    background:#fff;
+
+    width:650px;
+
+    max-width:90%;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    position:relative;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+}
+
+.close-modal{
+
+    position:absolute;
+
+    top:18px;
+
+    right:22px;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    color:#888;
+
+    transition:.3s;
+
+}
+
+.close-modal:hover{
+
+    color:#e63946;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:25px;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+/* ===========================
+   MEMBERSHIPS
+=========================== */
+
+.membership-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+.membership-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.membership-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.membership-card h2{
+
+    margin-bottom:20px;
+
+    color:#1d3557;
+
+}
+
+.price{
+
+    font-size:42px;
+
+    font-weight:700;
+
+    color:#e63946;
+
+    margin-bottom:20px;
+
+}
+
+.price span{
+
+    font-size:16px;
+
+    color:#777;
+
+}
+
+.membership-card ul{
+
+    margin:20px 0;
+
+    padding-left:20px;
+
+}
+
+.membership-card li{
+
+    margin-bottom:12px;
+
+}
+
+.card-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:25px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    resize:none;
+
+    font-size:15px;
+
+}
+
+/* ===========================
+   CHART
+=========================== */
+
+.chart-card{
+    height:400px;
+    min-height:400px;
+}
+
+.chart-card canvas{
+    width:100% !important;
+    height:280px !important;
+    max-height:280px !important;
+}
+
+
+
+/* ===========================
+   SETTINGS
+=========================== */
+
+.settings-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.settings-header{
+
+    margin-bottom:25px;
+
+}
+
+.settings-header h2{
+
+    font-size:20px;
+
+    margin-bottom:5px;
+
+}
+
+.settings-header p{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+.settings-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+
+.settings-grid .form-group{
+
+    margin-bottom:0;
+
+}
+
+
+.settings-card input,
+.settings-card select{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+
+.settings-card input:focus,
+.settings-card select:focus{
+
+    border-color:#e63946;
+
+    box-shadow:0 0 0 3px rgba(230,57,70,.1);
+
+}
+
+
+/* ===========================
+   SETTING OPTIONS
+=========================== */
+
+.setting-option{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+
+.setting-option:last-child{
+
+    border-bottom:none;
+
+}
+
+
+.setting-option strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+}
+
+
+.setting-option p{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+/* ===========================
+   TOGGLE SWITCH
+=========================== */
+
+.switch{
+
+    position:relative;
+
+    width:50px;
+
+    height:28px;
+
+    flex-shrink:0;
+
+}
+
+
+.switch input{
+
+    display:none;
+
+}
+
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#ddd;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.slider:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:22px;
+
+    height:22px;
+
+    left:3px;
+
+    top:3px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+    transition:.3s;
+
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+
+}
+
+
+.switch input:checked + .slider{
+
+    background:#e63946;
+
+}
+
+
+.switch input:checked + .slider:before{
+
+    transform:translateX(22px);
+
+}
+
+
+/* ===========================
+   SETTINGS ACTIONS
+=========================== */
+
+.settings-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .settings-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .setting-option{
+
+        gap:20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   FITCORE GYM CRM - FULL RESPONSIVE
+========================================================= */
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px){
+
+    .gym-main{
+        margin-left:220px;
+    }
+
+    .gym-sidebar{
+        width:220px;
+        padding:20px;
+    }
+
+    .gym-content{
+        padding:25px;
+    }
+
+    .topbar{
+        padding:18px 25px;
+    }
+
+    .dashboard-header h1{
+        font-size:30px;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .membership-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+/* =========================
+   MOBILE / TABLET
+========================= */
+
+@media (max-width:768px){
+
+    html,
+    body{
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden;
+    }
+
+    .gym-layout{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        min-height:100vh;
+    }
+
+    .gym-sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        top:auto;
+        left:auto;
+        overflow:visible;
+    }
+
+    .gym-main{
+        width:100%;
+        flex:1;
+        margin-left:0;
+        min-width:0;
+        height:auto;
+    }
+
+    .gym-content{
+        width:100%;
+        min-width:0;
+        height:auto;
+        padding:20px;
+    }
+
+    .gym-sidebar nav{
+        display:grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap:8px;
+    }
+
+    .gym-sidebar nav a{
+        text-align:center;
+    }
+
+
+
+    /*
+       Keep the sidebar visible.
+       It moves above the content instead of
+       disappearing completely.
+    */
+
+
+    .logo{
+        font-size:24px;
+        margin-bottom:20px;
+    }
+
+
+    .gym-sidebar nav a:hover{
+        transform:none;
+    }
+
+
+
+    /* TOPBAR */
+
+    .topbar{
+        padding:16px 20px;
+        gap:15px;
+    }
+
+    .topbar h2{
+        font-size:18px;
+    }
+
+    .topbar-right{
+        gap:12px;
+    }
+
+    .notification-btn{
+        font-size:19px;
+    }
+
+    .profile-pic{
+        width:38px;
+        height:38px;
+    }
+
+
+    /* HEADER */
+
+    .dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:18px;
+        margin-bottom:25px;
+    }
+
+    .dashboard-header h1{
+        font-size:28px;
+    }
+
+    .dashboard-header p{
+        font-size:14px;
+        line-height:1.6;
+    }
+
+    .dashboard-header .new-btn{
+        width:100%;
+    }
+
+
+    /* BUTTON */
+
+    .new-btn{
+        width:auto;
+        min-height:44px;
+    }
+
+
+    /* STATISTICS */
+
+    .stats-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .stat-card{
+        padding:20px;
+        gap:15px;
+    }
+
+    .stat-icon{
+        width:55px;
+        height:55px;
+        min-width:55px;
+        font-size:25px;
+    }
+
+    .stat-card h2{
+        font-size:24px;
+    }
+
+
+    /* DASHBOARD */
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .dashboard-card{
+        padding:20px;
+        border-radius:15px;
+        width:100%;
+        min-width:0;
+    }
+
+    .section-header{
+        gap:10px;
+    }
+
+    .section-header h2{
+        font-size:19px;
+    }
+
+
+    /* CLASS ITEMS */
+
+    .class-item{
+        gap:15px;
+        font-size:14px;
+    }
+
+
+    /* SEARCH */
+
+    .search-box{
+        width:100%;
+    }
+
+    .search-box input{
+        width:100%;
+        font-size:14px;
+    }
+
+
+    /* MEMBERSHIP */
+
+    .membership-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .membership-card{
+        width:100%;
+        padding:22px;
+    }
+
+    .price{
+        font-size:34px;
+    }
+
+    .card-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .card-actions .action-btn{
+        width:100%;
+    }
+
+
+    /* ACTION BUTTONS */
+
+    .action-btn{
+        min-height:40px;
+        padding:9px 12px;
+        font-size:13px;
+    }
+
+
+    /*
+       Prevent the action column from forcing
+       the entire page wider.
+    */
+
+    td:last-child{
+        min-width:0;
+        white-space:normal;
+    }
+
+    td:last-child .action-btn{
+        margin-right:4px;
+        margin-bottom:5px;
+    }
+
+
+    /* TABLE */
+
+    table{
+        width:100%;
+        table-layout:fixed;
+    }
+
+    th,
+    td{
+        padding:10px 8px;
+        font-size:12px;
+        word-break:break-word;
+        overflow-wrap:anywhere;
+    }
+
+    th{
+        font-size:11px;
+    }
+
+
+    /* MODALS */
+
+    .modal{
+        padding:15px;
+    }
+
+    .modal-content{
+        width:100%;
+        max-width:100%;
+        max-height:90vh;
+        padding:22px;
+        border-radius:15px;
+    }
+
+    .modal-header{
+        gap:12px;
+        margin-bottom:20px;
+    }
+
+    .modal-header h2{
+        font-size:20px;
+    }
+
+    .close-modal{
+        top:12px;
+        right:16px;
+        font-size:27px;
+    }
+
+    .info-row{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:5px;
+        padding:12px 0;
+    }
+
+    .modal-actions{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .modal-actions .action-btn,
+    .modal-actions .new-btn{
+        width:100%;
+    }
+
+
+    /* FORMS */
+
+    .form-group{
+        width:100%;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    textarea{
+        width:100%;
+        font-size:14px;
+    }
+
+
+    /* SETTINGS */
+
+    .settings-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .settings-card{
+        padding:20px;
+        border-radius:15px;
+    }
+
+    .setting-option{
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .setting-option strong{
+        font-size:14px;
+    }
+
+    .setting-option p{
+        line-height:1.5;
+    }
+
+    .settings-actions{
+        justify-content:stretch;
+    }
+
+    .settings-actions .new-btn{
+        width:100%;
+    }
+
+
+    /* CHART */
+
+    .chart-card{
+        height:350px;
+        min-height:350px;
+    }
+
+    .chart-card canvas{
+        width:100% !important;
+        height:250px !important;
+        max-height:250px !important;
+    }
+
+
+    /*
+       IMPORTANT:
+       Prevent individual containers from creating
+       unwanted horizontal page scrolling.
+    */
+
+    .gym-content,
+    .gym-main,
+    .dashboard-card,
+    .membership-card,
+    .settings-card{
+        max-width:100%;
+    }
+
+        .dashboard-card table{
+        table-layout:auto;
+        word-break:normal;
+        overflow-wrap:normal;
+    }
+
+    .dashboard-card th,
+    .dashboard-card td{
+        white-space:nowrap;
+    }
+
+    .status{
+        white-space:nowrap;
+        display:inline-block;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width:480px){
+
+    .gym-sidebar{
+        padding:15px;
+    }
+
+    .logo{
+        font-size:22px;
+        margin-bottom:15px;
+    }
+
+    .gym-sidebar nav{
+        grid-template-columns:1fr;
+    }
+
+    .gym-sidebar nav a{
+        text-align:left;
+        padding:12px 15px;
+    }
+
+
+    .gym-content{
+        padding:15px;
+    }
+
+
+    .topbar{
+        padding:14px 15px;
+    }
+
+    .topbar h2{
+        font-size:16px;
+    }
+
+
+    .dashboard-header h1{
+        font-size:24px;
+    }
+
+
+    .dashboard-card{
+        padding:17px;
+    }
+
+
+    .stat-card{
+        padding:17px;
+    }
+
+    .stat-icon{
+        width:48px;
+        height:48px;
+        min-width:48px;
+        font-size:22px;
+    }
+
+    .stat-card h2{
+        font-size:21px;
+    }
+
+
+    .membership-card{
+        padding:20px;
+    }
+
+    .membership-card h2{
+        font-size:20px;
+    }
+
+    .price{
+        font-size:32px;
+    }
+
+
+    .chart-card{
+        height:320px;
+        min-height:320px;
+    }
+
+    .chart-card canvas{
+        height:220px !important;
+        max-height:220px !important;
+    }
+
+
+    /* Tables become more compact */
+
+    th,
+    td{
+        padding:8px 5px;
+        font-size:11px;
+    }
+
+}
+
+/* =========================================================
+   DEMO PROJECT NAVIGATION
+========================================================= */
+
+.demo-navigation{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.demo-navigation button,
+.demo-navigation a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-height:40px;
+    padding:9px 16px;
+
+    border-radius:8px;
+
+    font-size:14px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+.demo-back-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+}
+
+.demo-home-btn{
+    border:1px solid #ddd;
+    background:#fff;
+    color:#333;
+}
+
+.demo-navigation button:hover,
+.demo-navigation a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+
+@media (max-width:480px){
+
+    .demo-navigation{
+        gap:8px;
+        margin-bottom:15px;
+    }
+
+    .demo-navigation button,
+    .demo-navigation a{
+        min-height:38px;
+        padding:8px 12px;
+        font-size:13px;
+    }
+
+}
