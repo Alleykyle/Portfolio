@@ -335,6 +335,62 @@ font-size:16px;
 
 }
 
+
+
+/* ===== GHL PROJECTS ===== */
+
+.ghl-projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.ghl-projects .project-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.ghl-projects .project-tools {
+    margin-bottom: 20px;
+}
+
+.ghl-projects .project-link {
+    margin-top: auto;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* for screenshots inside the cards */
+.ghl-projects .project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 1px solid #e5e7eb;
+}
+
+.project-details { margin-top: 16px; }
+.project-details summary { cursor: pointer; font-weight: 600; }
+.project-note { margin: 12px 0; font-size: 0.9rem; }
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+.project-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    cursor: zoom-in;
+}
+.project-gallery figcaption { font-size: 0.8rem; margin-top: 4px; }
+
+.project-card-link { text-decoration: none; color: inherit; display: block; }
+.view-project { display: inline-block; margin-top: 12px; font-weight: 600; }
+
+
 /* ===========================
    About
 =========================== */
@@ -1502,3 +1558,5 @@ font-size:16px;
     }
 
 }
+
+

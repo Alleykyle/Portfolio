@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dental Lead Capture & Follow-Up | GoHighLevel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/ghl.css' %}">
+</head>
+<body class="ghl">
+
+<header class="hero">
+    <div class="wrap">
+        <a href="{% url 'home' %}#ghl-projects" class="back">← Back to portfolio</a>
+        <span class="badge">GoHighLevel Demo</span>
+        <h1>Dental Lead Capture &amp;<br>Follow-Up Automation</h1>
+        <p class="lead">A consultation form, a lead pipeline, and an automated follow-up
+        that only reaches patients who haven't booked yet.</p>
+        <div class="chips">
+            <span>Forms</span><span>Pipelines</span><span>Workflows</span>
+            <span>Conditional Logic</span><span>Tags</span>
+        </div>
+        <div class="stats">
+            <div><strong>4</strong><small>pipeline stages</small></div>
+            <div><strong>2</strong><small>paths tested</small></div>
+            <div><strong>1</strong><small>smart follow-up</small></div>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <section class="cards">
+        <article class="card">
+            <div class="icon">⚠️</div>
+            <h3>The problem</h3>
+            <p>Dental clinics lose leads when follow-up is manual. Patients inquire, nobody replies in time, and they book elsewhere.</p>
+        </article>
+        <article class="card">
+            <div class="icon">🛠️</div>
+            <h3>What I built</h3>
+            <p>A booking form, a four-stage pipeline, and a workflow that confirms, notifies the team, tags the lead, and follows up.</p>
+        </article>
+        <article class="card">
+            <div class="icon">✅</div>
+            <h3>The result</h3>
+            <p>Every inquiry is tracked from first contact. Only leads who haven't booked receive the reminder.</p>
+        </article>
+    </section>
+
+    <p class="note">ℹ️ Built and tested in a GoHighLevel sandbox where outbound email is
+    restricted. Workflow logic was verified through execution logs.</p>
+
+    <section class="video">
+        <h2>Video walkthrough</h2>
+        {% if loom_url %}
+        <div class="video-frame">
+            <iframe src="{{ loom_url }}" title="Walkthrough" frameborder="0" allowfullscreen></iframe>
+        </div>
+        {% else %}
+        <div class="video-empty"><span>🎥</span><p>Video walkthrough coming soon</p></div>
+        {% endif %}
+    </section>
+
+    <section class="steps">
+        <h2>How it works</h2>
+        {% for shot in screenshots %}
+        <article class="step">
+            <div class="num">{{ forloop.counter }}</div>
+            <div class="step-body">
+                <h3>{{ shot.title }}</h3>
+                <p>{{ shot.desc }}</p>
+                <figure class="frame">
+                    <div class="frame-bar"><i></i><i></i><i></i></div>
+                    <img src="{% static shot.image %}" alt="{{ shot.title }}" loading="lazy" class="zoom">
+                </figure>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+    <section class="next">
+        <h2>Next step</h2>
+        <p>In a live account, a second workflow would add the booked tag automatically
+        when a lead moves to the Booked stage.</p>
+        <a href="{% url 'home' %}#ghl-projects" class="btn">← Back to all projects</a>
+    </section>
+</main>
+
+<div class="lightbox" id="lightbox"><img src="" alt=""></div>
+
+<script>
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('img.zoom').forEach(img => {
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('open');
+        });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('open'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+</body>
+</html>

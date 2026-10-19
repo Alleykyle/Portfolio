@@ -63,4 +63,5 @@ urlpatterns = [
         views.gym_overview,
         name="gym_overview"
     ),
+    path("ghl/dental-leads/", views.ghl_dental, name="ghl_dental"),
 ]

@@ -131,3 +131,25 @@ def gym_overview(request):
         request,
         "portfolio_app/projects/gym/overview.html"
     )
+
+
+def ghl_dental(request):
+    screenshots = [
+        {"image": "portfolio_app/images/form.png", "title": "1. Consultation Form",
+         "desc": "Captures name, email, phone, and preferred contact time, with SMS consent."},
+        {"image": "portfolio_app/images/1.png", "title": "2. Workflow: Trigger, Email, Team Alert",
+         "desc": "On form submission, the lead gets a confirmation email and the team is notified."},
+        {"image": "portfolio_app/images/2.png", "title": "3. Workflow: Tag, Pipeline, Wait",
+         "desc": "The lead is tagged, added to the pipeline, then the workflow waits."},
+        {"image": "portfolio_app/images/3.png", "title": "4. Workflow: Not Booked / Booked",
+         "desc": "A condition checks for the booked tag, so only unbooked leads get the follow-up."},
+        {"image": "portfolio_app/images/5.png", "title": "5. Test A: Not Booked",
+         "desc": "Execution log showing the follow-up email sent."},
+        {"image": "portfolio_app/images/4.png", "title": "6. Test B: Booked",
+         "desc": "Execution log showing the workflow ending with no follow-up."},
+        {"image": "portfolio_app/images/6.png", "title": "7. Pipeline Board",
+         "desc": "Leads by stage: New Lead, Contacted, Booked, Completed."},
+    ]
+    loom_url = ""  # paste your Loom embed link here later
+    return render(request, "portfolio_app/ghl_dental.html",
+                  {"screenshots": screenshots, "loom_url": loom_url})
