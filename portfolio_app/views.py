@@ -153,3 +153,47 @@ def ghl_dental(request):
     loom_url = ""  # paste your Loom embed link here later
     return render(request, "portfolio_app/ghl_dental.html",
                   {"screenshots": screenshots, "loom_url": loom_url})
+
+def ghl_onboarding(request):
+    screenshots = [
+        {
+            'title': 'The intake form',
+            'desc': 'New clients fill in their details and goals, with consent checkboxes for messaging.',
+            'image': 'portfolio_app/images/newform.png',
+        },
+        {
+            'title': 'The main workflow',
+            'desc': 'Tagging a contact new-client sends a welcome email and the intake form, adds them to the pipeline, and notifies the team.',
+            'image': 'portfolio_app/images/Builder1.png',
+        },
+        {
+            'title': 'Waiting, then checking the form',
+            'desc': 'The workflow waits, then checks whether the client submitted the intake form.',
+            'image': 'portfolio_app/images/Builder2.png',
+        },
+        {
+            'title': 'Two paths after the check',
+            'desc': 'Completed clients move forward and the team is alerted. Everyone else gets a reminder email.',
+            'image': 'portfolio_app/images/Builder3.png',
+        },
+        {
+            'title': 'A second workflow tags completed forms',
+            'desc': 'When the form is submitted, this workflow tags the contact. That tag is how the main workflow knows the form is done.',
+            'image': 'portfolio_app/images/TagWorkflow.png',
+        },
+        {
+            'title': 'The onboarding pipeline',
+            'desc': 'Five stages: New Client, Form Sent, Form Completed, Kickoff Scheduled, Onboarded. The card moves automatically.',
+            'image': 'portfolio_app/images/Pipeline.png',
+        },
+        {
+            'title': 'Test run: every step executed',
+            'desc': 'The execution log from a test contact, from the welcome email through to Kickoff Scheduled, with no errors.',
+            'image': 'portfolio_app/images/Execution.png',
+        },
+    ]
+    
+    return render(request, 'portfolio_app/ghl_onboarding.html', {
+        'screenshots': screenshots,
+        'loom_url': '',
+    })

@@ -64,4 +64,5 @@ urlpatterns = [
         name="gym_overview"
     ),
     path("ghl/dental-leads/", views.ghl_dental, name="ghl_dental"),
+    path('ghl/onboarding/', views.ghl_onboarding, name='ghl_onboarding'),
 ]

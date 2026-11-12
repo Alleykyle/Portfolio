@@ -387,7 +387,7 @@ font-size:16px;
 }
 .project-gallery figcaption { font-size: 0.8rem; margin-top: 4px; }
 
-.project-card-link { text-decoration: none; color: inherit; display: block; }
+.project-card-link { text-decoration: none; color: inherit; display: flex; }
 .view-project { display: inline-block; margin-top: 12px; font-weight: 600; }
 
 
@@ -614,6 +614,8 @@ font-size:16px;
     gap:30px;
 
     margin-top:50px;
+
+    align-items: stretch;
 
 }
 

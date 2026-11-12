@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Client Onboarding System | GoHighLevel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portfolio_app/css/ghl.css' %}">
+</head>
+<body class="ghl">
+
+<header class="hero">
+    <div class="wrap">
+        <a href="{% url 'home' %}#ghl-projects" class="back">← Back to portfolio</a>
+        <span class="badge">GoHighLevel Demo</span>
+        <h1>Client Onboarding<br>System</h1>
+        <p class="lead">A workflow that welcomes each new client, sends an intake form,
+        tracks them through a pipeline, and reminds anyone who hasn't finished it.</p>
+        <div class="chips">
+            <span>Workflows</span><span>Pipelines</span><span>Forms</span>
+            <span>Tags</span><span>Conditional Logic</span>
+        </div>
+        <div class="stats">
+            <div><strong>5</strong><small>pipeline stages</small></div>
+            <div><strong>2</strong><small>connected workflows</small></div>
+            <div><strong>2</strong><small>paths tested</small></div>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <section class="cards">
+        <article class="card">
+            <div class="icon">⚠️</div>
+            <h3>The problem</h3>
+            <p>When onboarding is manual, welcome emails go out late, intake forms get forgotten, and nobody knows which clients are waiting on what.</p>
+        </article>
+        <article class="card">
+            <div class="icon">🛠️</div>
+            <h3>What I built</h3>
+            <p>A workflow that starts when a client is tagged, sends a welcome email and intake form, tracks a five-stage pipeline, and checks whether the form was completed.</p>
+        </article>
+        <article class="card">
+            <div class="icon">✅</div>
+            <h3>The result</h3>
+            <p>Every client gets the same start. Completed forms move the client forward and alert the team, and everyone else gets a reminder.</p>
+        </article>
+    </section>
+
+    <p class="note">ℹ️ Built and tested in a GoHighLevel sandbox where outbound email is
+    restricted, so workflow logic was verified through execution logs. Task assignment
+    is not included, because the sandbox has no assignable staff user.</p>
+
+    <section class="video">
+        <h2>Video walkthrough</h2>
+        {% if loom_url %}
+        <div class="video-frame">
+            <iframe src="{{ loom_url }}" title="Walkthrough" frameborder="0" allowfullscreen></iframe>
+        </div>
+        {% else %}
+        <div class="video-empty"><span>🎥</span><p>Video walkthrough coming soon</p></div>
+        {% endif %}
+    </section>
+
+    <section class="steps">
+        <h2>How it works</h2>
+        {% for shot in screenshots %}
+        <article class="step">
+            <div class="num">{{ forloop.counter }}</div>
+            <div class="step-body">
+                <h3>{{ shot.title }}</h3>
+                <p>{{ shot.desc }}</p>
+                <figure class="frame">
+                    <div class="frame-bar"><i></i><i></i><i></i></div>
+                    <img src="{% static shot.image %}" alt="{{ shot.title }}" loading="lazy" class="zoom">
+                </figure>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+    <section class="next">
+        <h2>Next step</h2>
+        <p>In a live account, a kickoff call task would be assigned to the account
+        manager as soon as the form is completed.</p>
+        <a href="{% url 'home' %}#ghl-projects" class="btn">← Back to all projects</a>
+    </section>
+</main>
+
+<div class="lightbox" id="lightbox"><img src="" alt=""></div>
+
+<script>
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('img.zoom').forEach(img => {
+        img.addEventListener('click', () => {
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('open');
+        });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('open'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+</body>
+</html>
