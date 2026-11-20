@@ -227,7 +227,7 @@ def ghl_leadsync(request):
         },
         {
             'title': 'The result in Google Sheets',
-            'desc': '{Each tagged contact arrives as a new row with name, email, and phone. Personal details are blurred.',
+            'desc': 'Each tagged contact arrives as a new row with name, email, and phone. Personal details are blurred.',
             'image': 'portfolio_app/images/Z-Msheet.png',
         },
     ]
