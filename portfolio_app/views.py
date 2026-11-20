@@ -197,3 +197,41 @@ def ghl_onboarding(request):
         'screenshots': screenshots,
         'loom_url': '',
     })
+
+def ghl_leadsync(request):
+    screenshots = [
+        {
+            'title': 'GoHighLevel: the workflow that sends the data',
+            'desc': 'When a contact is tagged, a GoHighLevel workflow sends their name, email, and phone to a webhook.',
+            'image': 'portfolio_app/images/GHLworkflow.png',
+        },
+        {
+            'title': 'Zapier: webhook, filter, Google Sheets',
+            'desc': 'A Zap catches the data, passes it through a filter, and adds a row to the sheet. It also sends a Slack notification.',
+            'image': 'portfolio_app/images/ZWorkflow.png',
+        },
+        {
+            'title': 'Zapier: Slack notification step',
+            'desc': 'The notification step tested with sample data from the webhook.',
+            'image': 'portfolio_app/images/ZNotif.png',
+        },
+        {
+            'title': 'Make: webhook, filter, Google Sheets',
+            'desc': 'The same flow rebuilt in Make as a scenario, with the filter attached between the modules.',
+            'image': 'portfolio_app/images/panel.png',
+        },
+        {
+            'title': 'Make: notification step',
+            'desc': 'The notification step in the Make scenario.',
+            'image': 'portfolio_app/images/MNotif.png',
+        },
+        {
+            'title': 'The result in Google Sheets',
+            'desc': '{Each tagged contact arrives as a new row with name, email, and phone. Personal details are blurred.',
+            'image': 'portfolio_app/images/Z-Msheet.png',
+        },
+    ]
+    return render(request, 'portfolio_app/ghl_leadsync.html', {
+        'screenshots': screenshots,
+        'loom_url': '',
+    })
